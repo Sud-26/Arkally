@@ -1,0 +1,76 @@
+<td-layout>
+  <td-layout-nav
+    navigationRoute="/"
+    [toolbarTitle]="this.config.navbar ? '' : this.translate(this.config.title)">
+
+    <!-- LEFT MENU TOGGLE -->
+    <button
+      mat-icon-button
+      td-menu-button
+      (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div
+      td-toolbar-content
+      layout="row"
+      layout-align="start center"
+      style="width:15em"
+      flex>
+
+      <!-- LOGO -->
+      <mat-icon
+        class="push"
+        class="navbar-icon"
+        svgIcon="assets:logo"></mat-icon>
+    </div>
+
+    <div
+      td-toolbar-content
+      layout="row"
+      layout-align="start center"
+      flex>
+      <span flex></span>
+
+      <nvl-drop-menu
+        [user]="user"
+        (logout)="doLogout()"
+        (openUserProfile)="openUserProfile()"></nvl-drop-menu>
+    </div>
+
+    <!-- LEFT MENU -->
+    <td-layout-manage-list
+      opened="{{state.sideMenuOpened}}"
+      [mode]="getMode()">
+      <div td-sidenav-content>
+
+        <mat-nav-list>
+          <ng-container *ngFor="let group of config.menu.groups">
+            <ng-container *ngIf="!group.hidden">
+              <h3
+                mat-subheader
+                *ngIf="group.header">{{group.header | translate}}  </h3>
+              <ng-container *ngFor="let item of group.items">
+                <mat-list-item
+                  *ngIf="!item.hidden"
+                  [ngClass]="item.id === menuItem.id ? this.config.menu.selectedClass : ''"
+                  (click)="onClick(item)">
+                  <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+                  <a mat-line>{{item.label}}</a>
+                </mat-list-item>
+              </ng-container>
+              <mat-divider
+                class="divider"
+                *ngIf="group.divider && group.divider === true">
+              </mat-divider>
+            </ng-container>
+          </ng-container>
+        </mat-nav-list>
+      </div>
+
+      <!-- MAIN OUTLET -->
+      <ng-content></ng-content>
+    </td-layout-manage-list>
+
+  </td-layout-nav>
+</td-layout>

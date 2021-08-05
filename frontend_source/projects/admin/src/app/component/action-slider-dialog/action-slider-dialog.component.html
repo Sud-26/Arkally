@@ -1,0 +1,24 @@
+<h6>{{'action-dialog-header' |translate}}</h6>
+<h2 mat-dialog-title>{{data.action.name}}</h2>
+<div mat-dialog-content>
+  <mat-slider
+    [(ngModel)]="data.action.value"
+    [disabled]="disabled"
+    [invert]="invert"
+    [max]="data.action.max_value"
+    [min]="data.action.min_value"
+    [step]="step"
+    [thumbLabel]="thumbLabel"
+    [tickInterval]="tickInterval"
+    [(ngModel)]="value"
+    [vertical]="vertical">
+  </mat-slider>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    [mat-dialog-close]="data.action"
+    cdkFocusInitial>
+    {{'action-dialog-confirm' | translate}}
+  </button>
+</div>

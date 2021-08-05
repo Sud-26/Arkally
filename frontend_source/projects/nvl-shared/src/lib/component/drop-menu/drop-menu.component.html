@@ -1,0 +1,39 @@
+<div class="div-user">
+    <button
+      class="clear-outline-toolbar"
+      mat-button
+      [matMenuTriggerFor]="userDropdown">
+      <mat-icon>person_outline</mat-icon>
+      <span class="username"  *mqIf="'(min-width: 600px)'">{{user}}</span>
+      <mat-icon class="icon_spacer">arrow_drop_down</mat-icon>
+    </button>
+  
+    <mat-menu #userDropdown="matMenu">
+      <button
+        class="clear-outline"
+        mat-menu-item
+        (click)="doLogout()"
+        >
+        <mat-icon>exit_to_app</mat-icon>
+        {{ 'app.logout' | translate }}
+      </button>
+  
+      <button
+        class="clear-outline"
+        mat-menu-item
+        (click)="doOpenUserProfile()">
+        <mat-icon>security</mat-icon>
+        {{ 'user.profile' | translate }}
+      </button>
+     
+      <!--
+      <button
+        class="clear-outline"
+        mat-menu-item>
+        <mat-icon class="icon_spacer">help_outline</mat-icon>
+        {{ 'user.help' | translate }}
+      </button> -->
+  
+    </mat-menu>
+  </div>
+  

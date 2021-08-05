@@ -1,0 +1,163 @@
+<form
+  name="newForm"
+  #newForm="ngForm">
+
+  <div class="container">
+
+    <header title="add-new-subscription"></header>
+
+    <mat-card>
+
+      <div-field>
+        <ng-select
+          [items]="(users$ | async)?.data"
+          bindLabel="fullname"
+          bindValue="id"
+          autofocus
+          placeholder="{{'user' | translate}}"
+          name="user_id"
+          (change)="changeUserName($event)"
+          [(ngModel)]="model.user_id">
+        </ng-select>
+      </div-field>
+
+      <div-field>
+        <ng-select
+          [items]="(model$ | async)?.data"
+          bindLabel="name"
+          bindValue="id"
+          autofocus
+          placeholder="{{'Module name' | translate}}"
+          name="hw_module_id"
+          [(ngModel)]="model.hw_module_id">
+        </ng-select>
+      </div-field>
+
+      <div-field>
+        <ng-select
+          [items]="(subscriptions$ | async)?.data"
+          bindLabel="description"
+          bindValue="id"
+          autofocus
+          placeholder="{{'subscription-model-id' | translate}}"
+          name="subscription_model_id"
+          [(ngModel)]="model.subscription_model_id">
+        </ng-select>
+      </div-field>
+
+      <!-- <div-field>
+        <div class="row mb-3">
+          <div class="col-6 col-xl-9">
+            <ng-select
+              *ngIf="rebateType === 'fixed'"
+              [items]="(rebateFixed$ | async)?.data"
+              bindLabel="value"
+              bindValue="id"
+              autofocus
+              placeholder="{{'rebate-id' | translate}}"
+              name="rebate_id"
+              [(ngModel)]="model.rebate_id">
+            </ng-select>
+            <ng-select
+              *ngIf="rebateType === 'percentage'"
+              [items]="(rebatePercentage$ | async)?.data"
+              bindLabel="value"
+              bindValue="id"
+              autofocus
+              placeholder="{{'rebate-id' | translate}}"
+              name="rebate_id"
+              [(ngModel)]="model.rebate_id">
+            </ng-select>
+          </div>
+          <div class="col-3">
+            <mat-button-toggle-group
+              name="fontStyle"
+              #group="matButtonToggleGroup"
+              [value]="rebateType"
+              (change)="onRebateValChange(group.value)"
+              selected
+              aria-label="Font Style">
+              <mat-button-toggle value="fixed">{{'fixed' | translate}}</mat-button-toggle>
+              <mat-button-toggle value="percentage">{{'percentage' | translate}}</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+      </div-field> -->
+
+      <div-field>
+        <mat-form-field>
+          <input
+            type="number"
+            required
+            placeholder="{{'Price' | translate}}"
+            matInput
+            id="unit_count"
+            name="unit_count"
+            [(ngModel)]="model.unit_count">
+        </mat-form-field>
+      </div-field>
+
+      <div-field>
+        <mat-form-field>
+          <input
+            placeholder="{{'date-from' | translate}}"
+            matInput
+            id="date_from"
+            name="date_from"
+            [matDatepicker]="pickerFrom"
+            [(ngModel)]="model.date_from">
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerFrom">
+          </mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+      </div-field>
+
+      <div-field>
+        <mat-form-field>
+          <input
+            placeholder="{{'date-to' | translate}}"
+            matInput
+            id="date_to"
+            name="date_to"
+            [matDatepicker]="pickerTo"
+            [(ngModel)]="model.date_to">
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerTo">
+          </mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      </div-field>
+
+      <div-field>
+        <mat-checkbox
+          matInput
+          [(ngModel)]="model.active"
+          name="active">
+          {{'active' | translate}}
+        </mat-checkbox>
+      </div-field>
+
+      <nvl-cancel-save
+        (save)="save()"
+        (cancel)="cancel()"></nvl-cancel-save>
+
+    </mat-card>
+  </div>
+
+</form>
+
+<!-- TODO EXTRACT TO COMPONENT -->
+<ng-template
+  #loadingTemplate
+  *ngIf="!model">
+  <div class="d-flex justify-content-center m-5">
+    <div
+      class="spinner-border"
+      role="status">
+      <span class="sr-only">{{'loading' | translate}}</span>
+    </div>
+  </div>
+</ng-template>

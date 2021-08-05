@@ -1,0 +1,473 @@
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts" !default;
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "~@angular/material/theming";
+@import "~@covalent/core/theming/all-theme";
+@import "~@covalent/markdown/markdown-theme";
+@import "~@covalent/highlight/highlight-theme";
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~angular-notifier/styles";
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
+
+@import "../src/configs/variables.scss";
+
+@include mat-core();
+@include angular-material-theme($theme);
+@include covalent-theme($theme);
+
+body {
+  margin: 0;
+}
+
+$custom-typography: mat-typography-config(
+  $font-family: '"Open Sans", sans-serif;',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(18px, 24px, 500)
+);
+@include mat-core($custom-typography);
+
+.datatable-body-row {
+  border-bottom: solid $background 2px !important;
+}
+
+.ngx-datatable.fixed-header
+  .datatable-header
+  .datatable-header-inner
+  .datatable-header-cell {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  vertical-align: middle !important;
+}
+
+.ngx-datatable {
+  box-shadow: none !important;
+}
+
+.ngx-datatable.bootstrap:not(.cell-selection) .datatable-body-row:hover,
+.ngx-datatable.material:not(.cell-selection)
+  .datatable-body-row:hover
+  .datatable-row-group {
+  background: $table-background;
+}
+
+.dot-green {
+  height: 12px;
+  width: 12px;
+  background-color: $green;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.dot-red {
+  height: 12px;
+  width: 12px;
+  background-color: $red;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.conditional-green {
+  // color: $green;
+}
+
+.conditional-red {
+  // color: $red;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: $red;
+  border-color: $red;
+}
+
+.mat-toolbar {
+  background-color: white;
+  border-bottom: solid 0px $border-color;
+}
+
+.mat-button,
+.mat-flat-button,
+.mat-icon-button,
+.mat-stroked-button {
+  border-radius: 0px !important;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.form-header {
+  border-bottom: solid 1px $border-color !important;
+}
+
+.page-item.active .page-link {
+  background-color: $blue;
+  border-color: $blue;
+}
+
+.cancel-button {
+  border-color: $red !important;
+}
+
+.save-button:enabled,
+save-button[enabled] {
+  border-color: $green !important;
+  background-color: $green !important;
+}
+
+.clear-button {
+  color: gray !important;
+}
+
+.menu-item-selected {
+  background-color: rgba(38, 159, 196, 0.2) !important;
+  color: white;
+  //background-color: #269fc4;
+}
+
+mat-card {
+  transition: none !important;
+  box-shadow: none !important;
+  padding: 0.5em !important;
+
+  border: solid 1px $border-color;
+}
+
+.mat-card {
+  border-radius: 0px !important;
+}
+
+.mat-button-toggle-group-appearance-standard,
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  border-radius: 0px !important;
+}
+
+mat-toolbar {
+  box-shadow: none !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.ngx-datatable.material .datatable-header-cell.index {
+  color: #b6bdc4 !important;
+  font-weight: normal !important;
+}
+
+.ngx-datatable.material .datatable-body-cell.index {
+  color: #b6bdc4 !important;
+  font-weight: normal !important;
+}
+
+.mat-menu-panel.menu-item {
+  width: 350px;
+  max-width: 350px;
+  padding-left: 8px;
+  padding-right: 8px;
+  min-height: 45px;
+}
+
+p.not-a-link {
+  cursor: pointer;
+  color: $blue;
+}
+
+.leaflet-touch .leaflet-bar a {
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+.leaflet-touch .leaflet-control-zoom-in,
+.leaflet-touch .leaflet-control-zoom-out {
+  font-size: 24px !important;
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-polyline {
+  background-position: 5px 4px !important;
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-polygon {
+  background-position: -25px 4px !important;
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-circle {
+  background-position: -85px 4px !important;
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-marker {
+  background-position: -115px 4px !important;
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-edit.leaflet-disabled {
+  background-position: -205px 3px !important;
+}
+
+.leaflet-touch
+  .leaflet-draw-toolbar
+  .leaflet-draw-edit-remove.leaflet-disabled {
+  background-position: -235px 6px !important;
+}
+
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: 0px solid rgba(0, 0, 0, 0.2) !important;
+  background-clip: padding-box !important;
+}
+
+easy-button-container {
+  background-color: $red !important;
+}
+
+button.easy-button-button.leaflet-bar-part.leaflet-interactive {
+  background-color: white !important;
+  padding-left: 10px;
+  padding-right: 13px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 0px;
+  font-size: 15px;
+  width: 40px;
+}
+
+.leaflet-touch .leaflet-draw-actions {
+  left: 42px !important;
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-edit {
+  background-position: -145px 3px !important;
+}
+
+.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-remove {
+  background-position: -175px 5px !important;
+}
+
+ol.breadcrumb {
+  background-color: white !important;
+}
+
+a.ng-star-inserted.active {
+  color: $blue;
+}
+
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  background-color: $purple;
+}
+
+.subheader {
+  color: $purple;
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+mat-card-title {
+  color: $purple;
+}
+
+// Firefox specific
+@-moz-document url-prefix() {
+  html,
+  body {
+    overflow-y: hidden;
+  }
+}
+
+// Sidebar
+@media screen and (min-width: 1000px) {
+  mat-sidenav {
+    max-width: 70px !important;
+    min-width: 70px !important;
+  }
+
+  mat-sidenav:hover {
+    max-width: 200px !important;
+    min-width: 200px !important;
+  }
+
+  .td-layout-manage-list-sidenav {
+    overflow-x: hidden !important;
+  }
+}
+
+// Login thorium logo
+.avatar-icon {
+  height: 10em !important;
+  width: 15em !important;
+  top: -50px !important;
+  left: -20px !important;
+  position: absolute !important;
+}
+
+.avatar {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -41px !important;
+  width: 200px !important;
+  height: 67px !important;
+  border-radius: 0% !important;
+  z-index: 9;
+  padding: 0;
+}
+
+.leaflet-bar a:last-child {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom: none;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 39px !important;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-polyline {
+  background-position: 6px 4px !important;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-polygon {
+  background-position: -25px 4px !important;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-circle {
+  background-position: -85px 4px !important;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-draw-marker {
+  background-position: -115px 3px !important;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-edit-remove.leaflet-disabled {
+  background-position: -235px 4px !important;
+}
+
+.leaflet-draw-toolbar .leaflet-draw-edit-remove {
+  background-position: -174px 5px !important;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active,
+.ngx-datatable.material.single-selection
+  .datatable-body-row.active
+  .datatable-row-group,
+.ngx-datatable.material.multi-selection .datatable-body-row.active,
+.ngx-datatable.material.multi-selection
+  .datatable-body-row.active
+  .datatable-row-group,
+.ngx-datatable.material.multi-click-selection .datatable-body-row.active,
+.ngx-datatable.material.multi-click-selection
+  .datatable-body-row.active
+  .datatable-row-group {
+  background-color: $table-background;
+  font-color: #fff !important;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 54px !important;
+  padding: 0px 5px !important;
+}
+
+.breadcrumb {
+  padding: 0.3rem 1rem !important;
+  margin-bottom: 0 !important;
+  border-radius: 0rem !important;
+}
+
+ol.breadcrumb {
+  background-color: white!important;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.06);
+}
+
+@media screen and(min-width: 900px){
+    .mat-dialog-container app-rent-stats-dialog .datatable-header-cell:nth-of-type(2),   .mat-dialog-container app-rent-stats-dialog .datatable-body-cell:nth-of-type(2){
+      display: none !important;
+    }
+
+    
+
+}
+body{
+	overflow-y: auto;
+}
+
+
+.mat-menu-panel{
+  max-width: 600px !important;
+  border-radius: 0px !important;
+  overflow: inherit !important;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+}
+
+@media screen and (max-width: 768px) {
+  .mat-menu-panel{
+    max-width: 280px !important;
+    overflow: auto !important;
+    .action-form{
+      &.p-5 {
+        padding: 20px !important;
+      }
+      &.w-500{
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+.leaflet-bottom  {
+  bottom: 0;
+  width: 100%;
+ 
+}
+.leaflet-control-attribution{
+  display: none;
+}
+/* Border Color */
+.ng-select.ng-invalid.ng-touched .ng-select-container{
+  border-color: red;
+}
+/* Arrow Color */
+.ng-select.ng-invalid.ng-touched .ng-arrow-wrapper .ng-arrow{
+  border-color: red transparent transparent
+}
+/* Placeholder Color */
+.ng-select.ng-invalid.ng-touched .ng-select-container .ng-placeholder{
+  color: red;
+}
+
+@media only screen and (max-width: 550px){
+  .cdk-overlay-pane {
+    max-width: 95% !important;
+    width: 95% !important;
+    min-width: 95% !important;
+  }
+}

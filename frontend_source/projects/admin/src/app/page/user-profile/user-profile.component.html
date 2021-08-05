@@ -1,0 +1,279 @@
+<div class="container">
+  <form name="newForm" #newForm="ngForm">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{'password' | translate}}</mat-panel-title>
+          <mat-panel-description>{{'change-password' | translate}}</mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="passwordNew"
+            placeholder="{{'new-password-ph' | translate}}">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            id="oldPassword"
+            name="oldPassword"
+            [(ngModel)]="passwordOld"
+            placeholder="{{'old-password-ph' | translate}}">
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="accent"
+          (click)="changePassword()">
+          {{'save' | translate}}
+        </button>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{'map_pool_time' | translate}}</mat-panel-title>
+          <mat-panel-description
+            >{{'change-map-pool-time' | translate}}</mat-panel-description
+          >
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <input
+            matInput
+            id="mapPoolTime"
+            name="mapPoolTime"
+            [(ngModel)]="mapPoolTime"
+            placeholder="{{'map_pool_time' | translate}}"
+          />
+        </mat-form-field>
+
+        <button mat-flat-button (click)="changeMapPoolTime()" color="accent">
+          {{'save' | translate}}
+        </button>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{'timezone' | translate}}</mat-panel-title>
+          <mat-panel-description
+            >{{'timezone-desc' | translate}}</mat-panel-description
+          >
+        </mat-expansion-panel-header>
+
+        <ng-select
+          appendTo="body"
+          [items]="(timezones$ | async)?.data"
+          bindLabel="name"
+          bindValue="id"
+          placeholder="{{'timezone' | translate}}"
+          name="timezone"
+          [(ngModel)]="timezoneId"
+        >
+        </ng-select>
+
+        <button mat-flat-button (click)="changeTimezone()" color="accent">
+          {{'save' | translate}}
+        </button>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{'app.language' | translate}}</mat-panel-title>
+          <mat-panel-description
+            >{{'app.language.desc' | translate}}</mat-panel-description
+          >
+        </mat-expansion-panel-header>
+
+        <mat-form-field class="pl-1 pr-1 mt-1">
+          <mat-label>{{'app.language' | translate}}</mat-label>
+          <mat-select
+            [(value)]="selectedLocale"
+            required
+            (selectionChange)="languageChange($event)"
+          >
+            <mat-option
+              *ngFor="let locale of env.locales"
+              [value]="locale.locale"
+            >
+              {{locale.label | translate}}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+      <mat-card>
+        
+      
+      <!-- <mat-expansion-panel>
+        <mat-expansion-panel-header> -->
+        <!-- </mat-expansion-panel-header> -->
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'fullname' | translate}}"
+              matInput
+              autofocus
+              id="fullname"
+              name="fullname"
+              [(ngModel)]="model.fullname"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-radio-group
+            aria-label="Select an option"
+            name="gendar"
+            [(ngModel)]="model.gendar"
+          >
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button class="ml-2" value="female"
+              >Female</mat-radio-button
+            >
+          </mat-radio-group>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Company Name' | translate}}"
+              matInput
+              autofocus
+              id="companyname"
+              name="companyname"
+              [(ngModel)]="model.companyname"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Vat Id' | translate}}"
+              matInput
+              autofocus
+              id="vatid"
+              name="vatid"
+              [(ngModel)]="model.vatid"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Address' | translate}}"
+              matInput
+              autofocus
+              id="companyName"
+              name="address"
+              [(ngModel)]="model.address"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'City' | translate}}"
+              matInput
+              autofocus
+              id="city"
+              name="city"
+              [(ngModel)]="model.city"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Postal Code' | translate}}"
+              matInput
+              autofocus
+              id="postalcode"
+              name="postalcode"
+              [(ngModel)]="model.postalcode"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Country' | translate}}"
+              matInput
+              autofocus
+              id="country"
+              name="country"
+              [(ngModel)]="model.country"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Mobile Number' | translate}}"
+              matInput
+              autofocus
+              id="mobilenumber"
+              name="mobilenumber"
+              [(ngModel)]="model.mobilenumber"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Web Page' | translate}}"
+              matInput
+              autofocus
+              id="webpage"
+              name="webpage"
+              [(ngModel)]="model.webpage"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <mat-form-field>
+            <input
+              required
+              placeholder="{{'Distance unit' | translate}}"
+              matInput
+              autofocus
+              id="distanceUnit"
+              name="distanceUnit"
+              [(ngModel)]="model.distanceUnit"
+            />
+          </mat-form-field>
+        </div-field>
+
+        <div-field>
+          <button mat-flat-button (click)="onSubmit()" color="accent">
+            {{'save' | translate}}
+          </button>
+        </div-field>
+      </mat-card>
+      <!-- </mat-expansion-panel> -->
+   
+  </form>
+</div>

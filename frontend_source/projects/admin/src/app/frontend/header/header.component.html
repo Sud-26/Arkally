@@ -1,0 +1,290 @@
+<div
+    class="header sticky-fixed bg-white"
+    (window:resize)="onResize($event)"
+    (window:load)="onResize($event)"
+>
+    <div class="top-header container">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a
+                    class="navbar-brand d-inline-flex align-items-center"
+                    (click)="scrollUp($event)"
+                >
+                    <img
+                        src="./../../../assets/img/dashboard/logo.png"
+                        alt=""
+                        class="img-fluid logo-img"
+                    />
+                </a>
+                <button
+                    type="button"
+                    class="navbar-toggler"
+                    (click)="collapse = !collapse"
+                    data-toggle="collapse"
+                    data-target=" #navbarCollapse"
+                >
+                    <!-- <span class="navbar-toggler-icon"></span> -->
+                    <span class="material-icons">menu</span>
+                </button>
+                <div
+                    id="navbarCollapse"
+                    class="collapse navbar-collapse justify-content-start"
+                    [ngClass]=" collapse
+                    ? 'collapse show' : 'collapse'"
+                >
+                    <div class="navbar-nav">
+                        <a
+                            mat-button
+                            [matMenuTriggerFor]="menuAbout"
+                            class="nav-item nav-link about-link"
+                        >
+                            About <span class="caret"></span>
+                        </a>
+                        <mat-menu
+                            #menuAbout="matMenu"
+                            class="menu-form-wrapper"
+                            [hasBackdrop]="true"
+                        >
+                            <div class="action-form about-menu pl-3 pr-3">
+                                <div class="toparow"></div>
+
+                                <div class="dropdown-list">
+                                    <a
+                                        class="dropdown-item"
+                                        data-target="choose"
+                                        (click)="onScrollView(choose, 'choose' )"
+                                    >
+                                        Choose Us
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
+                                        data-target="process"
+                                        (click)="
+                                    onScrollView(process, 'process' )"
+                                        >Process
+                                    </a>
+                                    <a
+                                        class="dropdown-item"
+                                        data-target="download"
+                                        (click)="
+                                    onScrollView(download, 'download' )"
+                                        >Downloads</a
+                                    >
+                                </div>
+                            </div>
+                        </mat-menu>
+                        <!-- <a 
+                            class="nav-link" 
+                            data-target="feature"
+                            (click)="onScrollView(feature,'feature' )"> 
+                            Features
+                        </a> -->
+
+                        <a
+                            pageScroll
+                            data-target="feature"
+                            class="nav-link"
+                            (click)="onScrollView(feature,'feature')"
+                        >
+                            Features
+                        </a>
+                        <a
+                            pageScroll
+                            class="nav-link"
+                            data-target="app"
+                            (click)="onScrollView(app,'app')"
+                            >Apps & Downloads</a
+                        >
+
+                        <a
+                            pageScroll
+                            class="nav-link"
+                            data-target="safty"
+                            (click)="onScrollView(safty,'safty')"
+                            >Safety & Security</a
+                        >
+                        <a
+                            class="nav-link"
+                            data-target="database"
+                            (click)="
+                        onScrollView(database,'database')"
+                            >Database</a
+                        >
+
+                        <a
+                            pageScroll
+                            class="nav-link"
+                            data-target="idc"
+                            (click)="onScrollView(idc,'idc')"
+                            >Intelligent Distance Control</a
+                        >
+                        <a
+                            pageScroll
+                            class="nav-link"
+                            data-target="command"
+                            (click)="onScrollView(command,'command')"
+                            >Option List</a
+                        >
+                        <a
+                            pageScroll
+                            class="nav-link"
+                            data-target="price"
+                            (click)="onScrollView(price,'price')"
+                            >Price Plans</a
+                        >
+                        <a pageScroll class="nav-link d-flex">
+                            <button
+                                mat-button
+                                *ngIf="mobileView"
+                                (click)="openLoginDialog()"
+                                class="nav-link1 btn success log-in mt-0 ml-0"
+                            >
+                                Login
+                            </button>
+                            <button
+                                mat-button
+                                *ngIf="mobileView"
+                                (click)="openRegisterDialog()"
+                                class="av-link1 btn success log-in mt-0 ml-3"
+                            >
+                                SignUp
+                            </button>
+                        </a>
+
+                        <!-- <a pageScroll class="nav-link" *ngIf="mobileView" (click)="openLoginDialog()">Login</a>
+                        <a pageScroll class="nav-link" *ngIf="mobileView" (click)="openRegisterDialog()">Register</a> -->
+                    </div>
+
+                    <div class="d-flex" *ngIf="!mobileView">
+                        <div
+                            class="login d-flex align-items-center ml-3"
+                            [matMenuTriggerFor]="login"
+                            #trigger="matMenuTrigger"
+                        >
+                            <button
+                                mat-button
+                                class="nav-link1 btn success log-in mt-0"
+                            >
+                                Login
+                            </button>
+                            <mat-menu
+                                #login="matMenu"
+                                class="menu-form-wrapper"
+                                [hasBackdrop]="true"
+                            >
+                                <div
+                                    class="action-form p-5 w-500"
+                                    (click)="$event.stopPropagation()"
+                                    (keydown)="$event.stopPropagation()"
+                                >
+                                    <div class="toparow"></div>
+                                    <div class="text-left">
+                                        <h4 class="title-4 mb-4">Login</h4>
+                                    </div>
+                                    <app-dash-login
+                                        (forgetPass)="openForgotPass($event);"
+                                    >
+                                    </app-dash-login>
+                                </div>
+                            </mat-menu>
+                        </div>
+                        <div
+                            class="signup d-flex align-items-center ml-2"
+                            [matMenuTriggerFor]="signup"
+                            #trigger="matMenuTrigger"
+                        >
+                            <a
+                                mat-button
+                                class="nav-link1 btn success log-in mt-0"
+                            >
+                                SignUp
+                            </a>
+                            <mat-menu
+                                #signup="matMenu"
+                                class="menu-form-wrapper"
+                                [hasBackdrop]="true"
+                            >
+                                <div
+                                    class="action-form p-5 max-heightSignup"
+                                    (click)="$event.stopPropagation()"
+                                    (keydown)="$event.stopPropagation()"
+                                >
+                                    <div class="toparow"></div>
+                                    <div class="text-left">
+                                        <h4 class="title-4 mb-4">
+                                            Create An Account
+                                        </h4>
+                                    </div>
+                                    <app-dash-register></app-dash-register>
+                                </div>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="row" style="display: none;">
+            <nav class="navbar navbar-expand-sm">
+                <a class="navbar-brand"
+                    ><img
+                        src="./../../../assets/img/dashboard/logo.png"
+                        class="img-fluid logo-img"
+                /></a>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            id="navbardrop"
+                            data-toggle="dropdown"
+                        >
+                            About</a
+                        >
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item">Choose Us</a>
+                            <a class="dropdown-item">Process</a>
+                            <a class="dropdown-item">Downloads</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link">Features</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link">Apps & Downloads</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link">Safety & Security</a>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link">Database</a></li>
+
+                    <li class="nav-item"><a class="nav-link">(IDC)</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link">Option List</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link">Price Plans</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="btn success log-in">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Log in
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="btn success log-in">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            Sign up
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

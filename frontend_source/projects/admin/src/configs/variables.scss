@@ -1,0 +1,20 @@
+$red: #ff0505;
+$green: #26C281;
+$background: #f9f9f9;
+$purple: #5D576B;
+$blue: #269fc4;
+
+$border-color: rgba(0, 0, 0, 0.06);
+$table-background: #DEDDE1;
+
+$purple-theme: (50: $purple, contrast: (50: white));
+$red_theme: (50: $red, contrast: (50: white));
+$blue-theme: (50: $blue, contrast: (50: white));
+
+$primary: mat-palette($purple-theme, 50);
+$accent: mat-palette($blue-theme, 50);
+$warn: mat-palette($red_theme, 50);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;

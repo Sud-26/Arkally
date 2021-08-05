@@ -1,0 +1,102 @@
+.map-container {
+    height: 85vh;
+    padding: 0;
+}
+
+mat-selection-list {
+    max-height: 250px;
+    overflow: auto;
+}
+
+mat-card-header mat-card-title {
+    font-size: 16px;
+}
+
+mat-toolbar {
+    //height: 20px;
+    background-color: white;
+    border-bottom: solid 0px rgba(0, 0, 0, 0.06);
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    box-shadow: none !important;
+}
+
+::ng-deep .mat-button-toggle button {
+    margin: -5px;
+    font-size: 16px;
+}
+
+// .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+//     border-bottom: 1px #e0e0e0 solid !important;
+// }
+
+.mat-success {
+    background-color: green;
+    color: #fff;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+    margin-bottom: -31px;
+    margin-top: 3px;
+}
+
+.buttons-container {
+    margin-top: 15px;
+}
+
+
+.marker-pin {
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    background: #c30b82;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -15px 0 0 -15px;
+}
+
+// to draw white circle
+.marker-pin::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    margin: 3px 0 0 3px;
+    background: #fff;
+    position: absolute;
+    border-radius: 50%;
+}
+
+// to align icon
+.custom-div-icon i {
+    position: absolute;
+    width: 22px;
+    font-size: 22px;
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .map-container {
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 1920px) {
+    .map-container {
+        height: 70vh;
+    }
+}

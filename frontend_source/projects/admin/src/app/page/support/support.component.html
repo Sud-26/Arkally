@@ -1,0 +1,41 @@
+<mat-card>
+  <form
+    id="filterForm"
+    name="filterForm"
+    #filterForm="ngForm">
+
+    <div class="form-row">
+      <div class="form-group col-xl-3 col-md-4 ml-3">
+        <mat-form-field>
+          <input
+            placeholder="{{'email' | translate}}"
+            matInput
+            id="email"
+            name="email"
+            [(ngModel)]="serviceFilter.email">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <nvl-clear-add
+    (addNew)="add()"
+    (resetFilters)="resetFilters()">
+  </nvl-clear-add>
+</mat-card>
+
+<mat-card>
+  <nvl-overview-table
+    [deleteEnabled]="deletePermission"
+    [editEnabled]="editPermission"
+    [columns]="columns"
+    [rows]="rows"
+    [page]="page"
+    [loader]="loader"
+    [pageRequest]="pageRequest"
+    (changePage)="setPage($event)"
+    (changePageSize)="changePageSize($event)"
+    (navigateToEdit)="edit($event)"
+    (deleteEntity)="delete($event)">
+  </nvl-overview-table>
+</mat-card>

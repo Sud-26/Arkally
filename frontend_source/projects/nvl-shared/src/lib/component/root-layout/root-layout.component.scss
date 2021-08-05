@@ -1,0 +1,35 @@
+:host {
+    ::ng-deep .main-menu .mat-divider {
+        display: block;
+        margin: 0;
+        border-top-width: 0px;
+        border-top-style: solid;
+    }
+
+    .navbar-icon {
+        height: 6em;
+        width: 9em;
+    }
+
+    ::ng-deep .mat-drawer-container {
+        background-color: #f9f9f9 !important;
+    }
+
+
+    ::ng-deep .mat-drawer-side {
+        border-right: solid 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .divider {
+        display: block;
+        margin: 0;
+        border-top-width: 1px;
+        border-top-style: solid;
+    }
+
+}
+
+.navbar-icon {
+    height: 7em !important;
+    width: 7em !important;
+}

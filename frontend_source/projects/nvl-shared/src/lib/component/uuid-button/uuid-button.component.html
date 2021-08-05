@@ -1,0 +1,30 @@
+<p
+  class="not-a-link"
+  style="margin-top:0px"
+  [matMenuTriggerFor]="menu">
+  {{getLabel()}}
+  <mat-icon style="font-size:14px;color:#269fc4;">expand_more</mat-icon>
+</p>
+<mat-menu
+  #menu="matMenu"
+  class="menu-item">
+  <div
+    class="input-group input-group-sm"
+    *ngIf="entity">
+    <input
+      type="text"
+      class="form-control form-control-sm"
+      [value]="entity"
+      [disabled]="true">
+    <div class="input-group-append">
+      <button
+        style="border-color: #269fc4;color:#269fc4; background-color: white;"
+        class="btn btn-outline-primary"
+        type="button"
+        (click)="copy()"
+        title="Copy UUID">
+        <i class="fa fa-copy"></i>
+      </button>
+    </div>
+  </div>
+</mat-menu>

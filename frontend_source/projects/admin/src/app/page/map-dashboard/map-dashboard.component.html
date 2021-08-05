@@ -1,0 +1,122 @@
+<mat-card>
+
+  <form
+    id="filterForm"
+    name="filterForm"
+    #filterForm="ngForm">
+
+    <div class="form-row">
+      <div
+        class="form-group col-12 col-md-4 col-xl-2"
+        *ngIf="permissionFilterUsers">
+        <ng-select
+          [items]="(users$ | async)?.data"
+          bindLabel="fullname"
+          bindValue="id"
+          autofocus
+          placeholder="{{'user' | translate}}"
+          name="user_id"
+          (ngModelChange)="onUserSelectChange($event)"
+          [(ngModel)]="userId">
+        </ng-select>
+      </div>
+
+      <div class="form-group col-12 col-md-4 col-xl-2">
+        <ng-select
+          [disabled]="permissionFilterUsers && !userId"
+          [items]="(objects$ | async)"
+          bindLabel="name"
+          bindValue="id"
+          [multiple]="true"
+          [closeOnSelect]="false"
+          [hideSelected]="false"
+          placeholder="{{'traceable-object-id' | translate}}"
+          name="traceable_object_id"
+          [(ngModel)]="traceableObjectIds"
+          (ngModelChange)="onTraceableObjectSelectChange()">
+
+          <ng-template
+            ng-multi-label-tmp
+            let-items="items"
+            *ngIf="traceableObjectIds && traceableObjectIds.length > 1">
+            {{'selected-multiple' | translate}} [{{items.length}}]
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <div class="form-group col-12 col-md-4 col-xl-1 mt-3">
+        <button
+          mat-stroked-button
+          class="clear-button"
+          (click)="resetFilters()"
+          title="clear-filter">
+          <i class="fas fa-eraser"></i>
+          {{'clear-filter' | translate}}
+        </button>
+
+      </div>
+
+      <div  class="form-group col-12 col-md-12" [class.col-xl-7]="permissionFilterUsers" [class.col-xl-9]="!permissionFilterUsers">
+
+        <ng-container>
+          <button
+            mat-flat-button
+            class="float-right save-button mt-3"
+            color="accent"
+            (click)="saveDefaultsToLocalStorage()">
+            <i class="fas fa-save"></i>
+          </button>
+
+          <button
+            *ngIf="permissionDefaultView"
+            mat-flat-button
+            class="ml-3 float-right mt-3"
+            color="accent"
+            (click)="resetToDefaults()">
+            <i class="fas fa-search"></i>
+            {{'default-view' | translate}}
+          </button>
+
+          <button
+            *ngIf="permissionDefaultView"
+            mat-flat-button
+            class="ml-3 mt-3 float-right"
+            color="accent"
+            (click)="resetToBoundDefaults()">
+            <i class="fas fa-globe-europe"></i>
+            {{'default-bound' | translate}}
+          </button>
+        </ng-container>
+
+        <button
+          mat-flat-button
+          class="float-right mt-3"
+          color="accent"
+          (click)="trackVehicle()">
+          <i class="fas fa-map-marker-alt"></i>
+          {{'track-vehicles' | translate}}
+        </button>
+
+        <mat-slide-toggle
+          class="float-right ml-3 mt-4 mr-3"
+          [checked]="trace"
+          (change)="traceOnOff($event)">
+          {{'traces' | translate}}
+        </mat-slide-toggle>
+
+      </div>
+
+    </div>
+  </form>
+
+  <div
+    #map
+    class="map-container" (found)="handleResults($event)">
+  </div>
+
+  <!-- <h3>
+    <small class="text-muted">
+      {{'last-refresh-time' | translate}} {{lastRefresh | date: 'HH:mm:ss' }}
+    </small>
+  </h3> -->
+</mat-card>

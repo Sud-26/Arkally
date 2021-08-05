@@ -1,0 +1,371 @@
+<ngx-datatable #table class="material expandable" [columns]="columns" [headerHeight]="50" [columnMode]="'force'"
+	[selected]="selected" [selectionType]="selectionType" [rows]="rows" footerHeight="auto" rowHeight="auto"
+	(select)="onSelect($event)" [externalPaging]="true" [count]="page?.totalElements" [offset]="pageRequest?.page"
+	[limit]="pageRequest?.size">	
+	<!-- ROW DETAIL -->
+	<ngx-datatable-row-detail [rowHeight]="rowHeight" #myDetailRow (toggle)="onDetailToggle($event)">
+		<ng-template let-row="row"  let-expanded="expanded" ngx-datatable-row-detail-template>
+
+			<div class="detail-container">
+				<div *ngFor="let column of columns">
+					<div class="row mt-2" *ngIf="!slotCounts">
+						<div class="col-12" >
+							<strong>{{column.name | translate}}</strong>
+						</div>
+						<div class="col-12">{{row[column.prop]}}</div>
+					</div>
+			
+					<div class="row mt-2"  *ngIf="slotCounts">
+						<div class="col-12">
+							<strong>{{column.name | translate}}</strong>
+						</div>
+						<div class="col-12" *ngIf="column.nonResponsive">{{row[column.prop]}}</div>
+						<div class="col-12" *ngIf="column.modalView != undefined && column.modalView && !column.nonResponsive">{{row[column.prop]}}</div>
+						<div class="col-12" *ngIf="column.modalView == undefined && !column.nonResponsive">
+							<button
+								(click)="onCountClick(row, row[column.prop])" 
+								class="custom_button" 
+								mat-raised-button color="accent">
+								{{row[column.prop]}}
+							</button>	
+						</div>				
+					</div>
+
+				</div>
+
+				<!-- <div class="row mt-2">
+				</div> -->
+				
+				<div class="row mt-3" *ngIf="!slotCounts">
+					<div class="col-xl-12"  *ngIf="alarmTimerMobView">
+						<div class="d-flex flex-nowrap mb-2 justify-content-start">
+		
+							<div class="mr-4">
+								<button class="notification" (click)="timerState(row.id, $event)" [ngClass]="row.buzzer_on ? 'active' : ''"   mat-mini-fab color="accent"
+									aria-label="Example icon button with a filter list icon">
+									<i class="fas fa-bell"></i>
+								</button>
+							</div>
+		
+							<div class="d-flex align-items-center" *ngIf="row.slots != null">
+								<button mat-mini-fab [disabled]="!row.alarm_state" color="Clear" *ngIf="!row.alarm_pause_status " color="warn"
+									class="btn-small" (click)="clearTimerById(row.alarm_start, row.id, true)"
+									title="Clear Timer" aria-label="Clear">
+									<i class="fa fa-pause"></i>
+								</button>
+								<button mat-mini-fab [disabled]="!row.alarm_state" color="Clear" *ngIf="row.alarm_pause_status" color="accent"
+									class="btn-small" (click)="clearTimerById(row.alarm_start, row.id, false)"
+									title="Clear Timer" aria-label="Clear">
+									<i class="fa fa-play"></i>
+								</button>
+								<button mat-mini-fab [disabled]="!row.alarm_state" color="Clear" class="btn-small ml-1" color="warn"
+									(click)="clearTimerById(row.alarm_start, row.id, 'clear')" title="Clear Timer"
+									aria-label="Clear">
+									<i class="fa fa-trash"></i>
+								</button>
+								<button 
+									[disabled]="!row.alarm_state"
+									mat-mini-fab color="Clear"
+									class="btn-small ml-1" color="accent"
+									(click)="clearTimerById(row.alarm_start, row.id, 'complete')" title="Completed"
+									aria-label="Clear">
+									<i class="fa fa-clipboard-check fa-lg"></i>
+								</button>
+							</div>
+						</div>
+						<div class="d-flex flex-column mt-2 mb-2 justify-content-start"
+							*ngIf="row.slots != null">
+							<div class="mb-1">
+								<strong>Rent Time: </strong>
+								{{row.alarm_on_tme}}
+							</div>
+							<div>
+								<strong>Spent Time: </strong>
+								{{row.remainTime}}
+							</div>
+						</div>
+						<div class="d-flex flex-wrap alarm-list-btns mt-2 btn-circle justify-content-start"
+							*ngIf="row.slots != null">
+							<button *ngFor="let time of row.slots | keyvalue: unsorted"
+								[ngClass]="row.alarm_start == time.value && row.alarm_state ? 'active' : ''"
+								(click)="onAlarmTime(time.value, $event, row.id)" mat-stroked-button color="accent">
+								{{time.value}}
+								min
+							</button>										
+						</div>
+					</div>
+					<button  class="mr-2" mat-stroked-button *ngIf="router.url === '/vehicles' && !alarmTimerMobView"  (click)="openTimeSlotDialog(row.id, row.slots);">
+						<i class="fas fa-plus"></i>
+					</button>
+
+					<button class="mr-2" mat-stroked-button *ngIf="actionDialogStatus"  (click)="excuteDailog(row.traceable_object_id);">
+						<i class="fas fa-eye"></i> 
+					</button>
+
+					<button *ngIf="!alarmTimerMobView" mat-stroked-button (click)="onNavigateToEditClick(row)">
+						<i class="fas fa-pen"></i>
+						{{'edit' | translate}}
+
+					</button>
+					<button *ngIf="!alarmTimerMobView" class="ml-2" mat-stroked-button (click)="onDeleteEntityClick(row)">
+						<i class="fas fa-trash"></i>
+						{{'delete' | translate}}
+					</button>
+				</div>
+
+				<div class="row mt-2">
+					<mat-divider></mat-divider>
+				</div>
+			</div>
+
+		</ng-template>
+	</ngx-datatable-row-detail>
+
+	<ngx-datatable-column name="#" [sortable]="false" [maxWidth]="60" [headerClass]="'index'" [cellClass]="'index'">
+		<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex">
+			{{rowIndex + 1}}
+		</ng-template>
+	</ngx-datatable-column>
+
+	<ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+		[canAutoResize]="false">
+		<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+			<a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+				title="Expand/Collapse Row" (click)="toggleExpandRow(row)" class="desktop-hidden">
+			</a>
+		</ng-template>
+	</ngx-datatable-column>
+
+	<!-- COLUMNS -->
+	<ngx-datatable-column *ngFor="let col of columns" [name]="col.name | translate" [prop]="col.prop" [pipe]="col.pipe"
+		[frozenLeft]="col.frozenLeft" [frozenRight]="col.frozenRight" [minWidth]="col.minWidth"
+		[maxWidth]="col.maxWidth" [cellClass]="col.cellClass" [headerClass]="col.headerClass">
+		<ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+			<span class="mobile-hidden" *ngIf="!col.nonResponsive && !col.isUuid">{{ column.name || '-' }}</span>
+			<span *ngIf="col.nonResponsive">{{ column.name || '-'}}</span>
+		</ng-template>
+		<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+			<!-- <span  *ngIf="slotCounts" (click)="onCountClick(row)">5</span> -->
+			<!-- <pre>{{ col | json}}</pre> -->
+			<ng-container *ngIf="col.renderType && col.renderType === 'action_list' && col.renderType == null">
+				<button mat-icon-button [matMenuTriggerFor]="menu">
+					<mat-icon>menu</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<ng-container *ngFor="let action of value">
+						<button mat-menu-item [disabled]="action.disabled" *ngIf="action.type === 'button'"
+							(click)="executeAction(row,action)">
+							<mat-icon>{{ action.icon }}</mat-icon>
+							<span>{{ action.name }}</span>
+						</button>
+						<!-- <button mat-menu-item [disabled]="action.disabled" *ngIf="action.type === 'button'"
+							(click)="excuteDailog(row,action)">
+							<mat-icon>{{ action.icon }}</mat-icon>
+							<span>{{ action.name }}</span>
+						</button> -->
+						<div (click)="$event.stopPropagation()">
+							<mat-slide-toggle class="action-mat-slide-toggle" *ngIf="action.type === 'toggle'"
+								[checked]="action.state" (change)="executeAction(row,action)"
+								[disabled]="action.disabled">
+								{{action.name}}
+							</mat-slide-toggle>
+						</div>
+					</ng-container>
+				</mat-menu>
+			</ng-container>
+			<ng-container *ngIf="!col.renderType">
+				<span class="mobile-hidden" *ngIf="!col.nonResponsive && !col.isUuid">
+					<button
+						*ngIf="col.modalView == undefined && slotCounts"
+						(click)="onCountClick(row, value)" class="custom_button"  mat-raised-button color="accent">
+						{{ value }}
+					</button>	
+					<div *ngIf="col.modalView != undefined && col.modalView"  [innerHTML]="value || '-'"></div>
+					<div *ngIf="!slotCounts"  [innerHTML]="value || '-'"></div>
+
+
+
+				</span>
+<!-- 			<span class="mobile-hidden" *ngIf="!col.nonResponsive && !col.isUuid">
+					<button
+						(click)="onCountClick(row, value)" class="custom_button"  mat-raised-button color="accent">
+						{{ value }}
+					</button>	
+					<div  [innerHTML]="value || '-'"></div>
+				</span> -->
+				<!-- <div  [innerHTML]="value || '-'"></div> -->
+				<span *ngIf="col.nonResponsive  && !col.isUuid">
+					<div [innerHTML]="value || '-'"></div>
+				</span>
+			</ng-container>
+			<nvl-uuid-button [entity]="value" *ngIf="col.isUuid"></nvl-uuid-button>
+		</ng-template>
+	</ngx-datatable-column>
+
+	<!-- Alarm -->
+	<ngx-datatable-column *ngIf="alarmIcons" name="{{'Timer' | translate}}" sortable="false" [headerClass]="'text-left'"
+		[cellClass]="'text-left'">
+		<ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+			<span class="mobile-hidden">{{ column.name }}</span>
+		</ng-template>
+		<ng-template class="mobile-hidden"  let-row="row" ngx-datatable-cell-template>
+		
+			<div class="col-xl-12 pl-0 mobile-hidden">
+				<div class="d-flex flex-nowrap mb-2 justify-content-start">
+
+					<div class="mr-4">
+						<button class="notification" (click)="timerState(row.id, $event)" [ngClass]="row.buzzer_on ? 'active' : ''"   mat-mini-fab color="accent"
+							aria-label="Example icon button with a filter list icon">
+							<i class="fas fa-bell"></i>
+						</button>
+					</div>
+					<!-- <pre>{{ Object.keys(row.slots).length | json }}</pre> -->
+
+					<div class="d-flex align-items-center" *ngIf="row.slots != null">
+						<button mat-mini-fab [disabled]="!row.alarm_state" color="Clear" *ngIf="!row.alarm_pause_status " color="warn"
+							class="btn-small" (click)="clearTimerById(row.alarm_start, row.id, true)"
+							title="Clear Timer" aria-label="Clear">
+							<i class="fa fa-pause"></i>
+						</button>
+						<button mat-mini-fab [disabled]="!row.alarm_state" color="Clear" *ngIf="row.alarm_pause_status" color="accent"
+							class="btn-small" (click)="clearTimerById(row.alarm_start, row.id, false)"
+							title="Clear Timer" aria-label="Clear">
+							<i class="fa fa-play"></i>
+						</button>
+						<button mat-mini-fab [disabled]="!row.alarm_state" color="Clear" class="btn-small ml-1" color="warn"
+							(click)="clearTimerById(row.alarm_start, row.id, 'clear')" title="Clear Timer"
+							aria-label="Clear">
+							<i class="fa fa-trash"></i>
+						</button>
+						<button 
+							[disabled]="!row.alarm_state"
+							mat-mini-fab color="Clear"
+							class="btn-small ml-1" color="accent"
+							(click)="clearTimerById(row.alarm_start, row.id, 'complete')" title="Completed"
+							aria-label="Clear">
+							<i class="fa fa-clipboard-check fa-lg"></i>
+						</button>
+					</div>
+				</div>
+				<div class="d-flex flex-nowrap mt-2 mb-2 justify-content-start"
+					*ngIf="row.slots != null">
+					<div class="mr-4">
+						<strong>Rent Time: </strong>
+						{{row.alarm_on_tme}}
+					</div>
+					<div>
+						<strong>Spent Time: </strong>
+						{{row.remainTime}}
+					</div>
+				</div>
+				<div class="d-flex flex-nowrap mt-2 btn-circle justify-content-start"
+					*ngIf="row.slots != null">
+					<button *ngFor="let time of row.slots | keyvalue: unsorted"
+						[ngClass]="row.alarm_start == time.value && row.alarm_state ? 'active' : ''"
+						(click)="onAlarmTime(time.value, $event, row.id)" mat-stroked-button color="accent">
+						{{time.value}}
+						min
+					</button>										
+				</div>
+			</div>
+		</ng-template>
+	</ngx-datatable-column>
+
+	<!-- TimeSlot modal -->
+	<ngx-datatable-column *ngIf="vehicelTimeSlot" name="{{'action-list' | translate}}" sortable="false" [maxWidth]="100"
+		[headerClass]="'text-center'" [cellClass]="'text-center'">
+		<ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+			<span class="mobile-hidden">{{ column.name }}</span>
+		</ng-template>
+		<ng-template let-row="row" ngx-datatable-cell-template>
+			<button mat-button class="mobile-hidden" (click)="openTimeSlotDialog(row.id, row.slots);">
+				<i class="fas fa-plus"></i>
+			</button>
+		</ng-template>
+	</ngx-datatable-column>
+
+	<!-- Vehicle modal -->
+	<ngx-datatable-column *ngIf="actionDialogStatus" name="{{'Details' | translate}}" sortable="false" [maxWidth]="100"
+		[headerClass]="'text-center'" [cellClass]="'text-center'">
+		<ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+			<span class="mobile-hidden">{{ column.name }}</span>
+		</ng-template>
+		<ng-template let-row="row" ngx-datatable-cell-template>
+			<!-- <pre>{{ row | json}}</pre> -->
+			<button mat-button class="mobile-hidden" (click)="excuteDailog(row.traceable_object_id);">
+				<i class="fas fa-eye"></i> 
+			</button>
+		</ng-template>
+	</ngx-datatable-column>
+	<!-- EDIT -->
+	<ngx-datatable-column *ngIf="editEnabled" name="{{'edit' | translate}}" sortable="false" [maxWidth]="100"
+		[headerClass]="'text-center'" [cellClass]="'text-center'">
+		<ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+			<span class="mobile-hidden">{{ column.name }}</span>
+		</ng-template>
+		<ng-template let-row="row" ngx-datatable-cell-template>
+			<button mat-button class="mobile-hidden" (click)="onNavigateToEditClick(row)">
+				<i class="fas fa-pen"></i>
+			</button>
+		</ng-template>
+	</ngx-datatable-column>
+
+	<!-- DELETE -->
+	<ngx-datatable-column *ngIf="deleteEnabled" name="{{'delete' | translate}}" sortable="false" prop="id"
+		[maxWidth]="100" [headerClass]="'text-center'">
+		<ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+			<span class="mobile-hidden">{{ column.name }}</span>
+		</ng-template>
+		<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+			<button mat-button class="mobile-hidden" (click)="onDeleteEntityClick(row)">
+				<i class="fas fa-trash"></i>
+			</button>
+		</ng-template>
+	</ngx-datatable-column>
+
+	<!-- FOOTER -->
+	<ngx-datatable-footer >
+		<ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize">
+			<div *ngIf="loader" class="container-fluid">
+				<div class="row">
+					<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+				</div>
+			</div>
+			<!-- {{ columns | json}} -->
+			<div *ngIf="!loader"  class="container-fluid mt-3">
+			<!-- <div class="row" *ngIf="!columns[1]['modalView']"> -->	
+				<div class="row" *ngIf="page != undefined">
+					<div class="col-md-3">
+						<div class="mt-3 m-center" *ngIf="rows">
+							{{'total' | translate}}
+							<strong>{{rowCount}}</strong>
+							{{'records' | translate}}						
+						</div>
+						<!-- <div *ngIf="!rows">{{'no-data' | translate}}</div> -->
+					</div>
+					<div class="col-md-9 m-flex m-column mt-4-xs">
+						<div class="d-inline-block float-right">
+							<ngb-pagination  #ngbPage [boundaryLinks]="true"  [collectionSize]="page.totalElements"
+								[pageSize]="pageRequest.size" [page]="pageRequest.page" [maxSize]="5"
+								(pageChange)="onPageChange($event)">
+							</ngb-pagination>
+						</div>
+						<div class="d-inline-block float-right mr-2 m-center">
+							<div class="mr-3">
+								{{'size' | translate}}
+								<mat-form-field style="width:45px;">
+									<mat-select [(ngModel)]="pageRequest.size"
+										(selectionChange)="onPageSizeChange($event.value)" name="pageSizeSelect">
+										<mat-option *ngFor="let element of availablePageSizeList" [value]="element">
+											{{element}}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</ngx-datatable-footer>
+</ngx-datatable>

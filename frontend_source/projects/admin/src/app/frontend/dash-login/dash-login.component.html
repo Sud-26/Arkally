@@ -1,0 +1,43 @@
+<form #loginForm="ngForm">
+    <div class="form-group">
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Email Address"
+            required="required"
+            id="email"
+            name="email"
+            value="{{email}}"
+            [(ngModel)]="loginForm.email"
+        />
+    </div>
+
+    <div class="form-group">
+        <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            required="required"
+            id="password"
+            name="password"
+            value="{{password}}"
+            [(ngModel)]="loginForm.password"
+        />
+    </div>
+    
+    <div class="form-group">
+        <a class="cursor-pointer text-teal" (click)="openForgotPass($event);"
+            >Forgot your password
+        </a>
+    </div>
+
+    <div class="form-group mt-4">
+        <button
+            type="button"
+            class="btn success success2 log-in btn-xl"
+            (click)="onLogin(loginForm.form.value ,$event)"
+        >
+            Login
+        </button>
+    </div>
+</form>

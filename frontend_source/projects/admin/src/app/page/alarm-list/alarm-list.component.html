@@ -1,0 +1,85 @@
+<!-- <mat-card> -->
+<!--- <form
+    id="filterForm"
+    name="filterForm"
+    #filterForm="ngForm">
+
+ <nvl-clear-add
+    (addNew)="add()"
+    (resetFilters)="resetFilters()">
+  </nvl-clear-add>
+    <mat-divider></mat-divider> -->
+
+<!-- <div class="form-row">
+      <div class="form-group col-xl-3 col-md-3 ml-3">
+        <mat-form-field>
+          <input
+            placeholder="{{'name' | translate}}"
+            matInput
+            id="name"
+            name="name"
+            [(ngModel)]="serviceFilter.name">
+        </mat-form-field>
+      </div>
+    </div>
+  </form> -->
+
+<!-- <nvl-clear-add
+    (addNew)="add()"
+    (resetFilters)="resetFilters()">
+  </nvl-clear-add>
+</mat-card> -->
+
+<mat-card>
+  <form id="filterForm" name="filterForm" #filterForm="ngForm">
+    <div class="form-row">
+
+      <div class="form-group pt-2 col-xl-3 col-md-4 ml-3 mb-2 mt-3">
+          <!-- <ng-select [items]="(name$ | async)" bindLabel="name" bindValue="id" [multiple]="false" [closeOnSelect]="false"
+            [hideSelected]="true" placeholder="{{'Vehicle name' | translate}}" name="name"
+            [(ngModel)]="serviceFilter.name" (ngModelChange)="onVehicleNameChange($event)">
+          </ng-select> -->
+          <mat-form-field> <input placeholder="{{'Name' | translate}}" matInput id="name" name="name" [(ngModel)]="serviceFilter.name"> </mat-form-field>
+       
+      </div>
+
+      <!-- <div class="form-group pt-2 col-xl-3 col-md-4 ml-3 mb-2 mt-2">
+        <ng-select [items]="(objects$ | async)" bindLabel="name" bindValue="id" [multiple]="false" [closeOnSelect]="false"
+          [hideSelected]="true" placeholder="{{'Vehicle Type' | translate}}" name="traceable_object_id"
+          [(ngModel)]="serviceFilter.vehicleType" (ngModelChange)="onVehicleChange($event)">
+        </ng-select>
+      </div> -->
+    </div>
+  </form>
+  <div class="form-group col-xl-2 col-md-2">
+    <button mat-stroked-button class="clear-button" (click)="resetFilters()" title="clear-filter">
+      <i class="fas fa-eraser"></i>
+      {{'clear-filter' | translate}}
+    </button>
+  </div>
+</mat-card>
+
+<mat-card>
+
+  <!-- (actionListAction)="actionListAction($event)"  -->
+  <mat-card>
+    <nvl-overview-table 
+      (actionDialog)="actionDialog($event)"
+      [deleteEnabled]="deletePermission"
+      [editEnabled]="editPermission" 
+      [columns]="columns" 
+      [rows]="rows"
+      [page]="page" 
+      [loader]="loader"
+      [pageRequest]="pageRequest" 
+      [rentTime]="getRentTime"
+      [spentTime]="getSpentTime" 
+      (changePage)="setPage($event)"
+      (changePageSize)="changePageSize($event)"
+      (navigateToEdit)="edit($event)"
+      (deleteEntity)="delete($event)"
+      (aClickedEvent)="aClicked($event,id)" 
+      (stateClickedEvent)="stateClicked($event)"
+      (clearTimerEvent)="clearTimer($event,id)">
+    </nvl-overview-table>
+  </mat-card>

@@ -1,0 +1,17 @@
+mat-grid-tile {
+    // background: lightblue;
+}
+.text-blue {
+    color: #212657 !important;
+}
+.bg-blue{
+   background:  #212657;
+   &.dash-tile{
+        border-radius: 4px !important;
+        letter-spacing: 1px;
+        filter: drop-shadow(2px 4px 6px rgb(226 226 226 / 59%));
+        .text-muted{
+            color: #9898a1 !important; 
+        }
+    }
+}

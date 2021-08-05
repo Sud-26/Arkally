@@ -1,0 +1,27 @@
+TRACE:    127.0.0.1:40566 - Connection made
+TRACE:    122.163.176.14:0 - ASGI [8] Started scope={'type': 'http', 'http_version': '1.1', 'server': ('127.0.0.1', 11229), 'client': ('122.163.176.14', 0), 'scheme': 'http', 'method': 'GET', 'root_path': '', 'path': '/api/hw_module_user_position/point', 'raw_path': b'/api/hw_module_user_position/point', 'query_string': b'vehicles=35', 'headers': '<...>'}
+TRACE:    122.163.176.14:0 - ASGI [8] Receive {'type': 'http.request', 'body': '<0 bytes>', 'more_body': False}
+khalid [{'id': 42}] (35,)
+[2021-06-02 21:15:27 +0200] [4791] [ERROR] get_hw_module_user_position_last_point_element service erred with: list index out of range
+ERROR:    get_hw_module_user_position_last_point_element service erred with: list index out of range
+[2021-06-02 21:15:27 +0200] [4791] [INFO] GET ALL LAST POINTS: 1.1784100532531738
+INFO:     GET ALL LAST POINTS: 1.1784100532531738
+[2021-06-02 21:15:27 +0200] [4791] [INFO] GET - http://arkally.com/api/hw_module_user_position/point?vehicles=35 - 200
+INFO:     GET - http://arkally.com/api/hw_module_user_position/point?vehicles=35 - 200
+TRACE:    122.163.176.14:0 - ASGI [11] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     122.163.176.14:0 - "GET /api/hw_module_user_position/point?vehicles=35 HTTP/1.1" 200 OK
+TRACE:    122.163.176.14:0 - ASGI [11] Send {'type': 'http.response.body', 'body': '<133 bytes>', 'more_body': False}
+TRACE:    122.163.176.14:0 - ASGI [11] Completed
+TRACE:    127.0.0.1:40564 - Connection lost
+khalid [{'id': 42}] (35,)
+[2021-06-02 21:15:28 +0200] [4790] [ERROR] get_hw_module_user_position_last_point_element service erred with: list index out of range
+ERROR:    get_hw_module_user_position_last_point_element service erred with: list index out of range
+[2021-06-02 21:15:28 +0200] [4790] [INFO] GET ALL LAST POINTS: 1.1707284450531006
+INFO:     GET ALL LAST POINTS: 1.1707284450531006
+[2021-06-02 21:15:28 +0200] [4790] [INFO] GET - http://arkally.com/api/hw_module_user_position/point?vehicles=35 - 200
+INFO:     GET - http://arkally.com/api/hw_module_user_position/point?vehicles=35 - 200
+TRACE:    122.163.176.14:0 - ASGI [8] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     122.163.176.14:0 - "GET /api/hw_module_user_position/point?vehicles=35 HTTP/1.1" 200 OK
+TRACE:    122.163.176.14:0 - ASGI [8] Send {'type': 'http.response.body', 'body': '<133 bytes>', 'more_body': False}
+TRACE:    122.163.176.14:0 - ASGI [8] Completed
+TRACE:    127.0.0.1:40566 - Connection lost

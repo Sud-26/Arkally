@@ -1,0 +1,279 @@
+<mat-card>
+  <div
+    *ngIf="loader"
+    class="container-fluid">
+    <div class="row">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+  <div
+    layout-gt-sm="row"
+    tdMediaToggle="gt-sm"
+    [mediaClasses]="['push-sm']">
+
+    <div flex-gt-sm="75">
+      <div class="col-12 mb-2">
+        <form
+          id="filterForm"
+          name="filterForm"
+          #filterForm="ngForm">
+
+          <div class="form-row">
+
+            <div
+              class="form-group col-xl-2 col-md-12 mt-3 ml-3"
+              style="margin-bottom:3em;">
+              <mat-slide-toggle
+                class="mt-2 float-left"
+                [checked]="geography"
+                (change)="geographyOnOff($event)">
+                {{'enable-geography' | translate}}
+              </mat-slide-toggle>
+            </div>
+            <div
+              class="form-group col-xl-3 col-md-3 ml-3"
+              *ngIf="geography">
+              <ng-select
+                [items]="(users$ | async)?.data"
+                bindLabel="fullname"
+                bindValue="id"
+                autofocus
+                placeholder="{{'user' | translate}}"
+                name="user_id"
+                (ngModelChange)="onUserSelectChange($event)"
+                [(ngModel)]="userId">
+              </ng-select>
+            </div>
+            <div
+              class="form-group col-xl-3 col-md-3 mt-3"
+              *ngIf="geography">
+              <nvl-clear-add
+                [addEnabled]="false"
+                (addNew)="add()">
+              </nvl-clear-add>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- MAP -->
+      <div
+        #map
+        class="map-container">
+      </div>
+    </div>
+
+    <div
+      flex-gt-sm="25"
+      class="ml-2">
+
+      <div class="container-fluid">
+        <mat-card-header>
+          <mat-card-title>{{'location-parameters' | translate}}</mat-card-title>
+        </mat-card-header>
+
+        <div
+          class="col-12 ml-3 mt-4 mb-5"
+          *ngIf="!this.model.coordinates">
+          {{'location-usage-manual' | translate}}
+        </div>
+
+        <form
+          id="locationForm"
+          name="locationForm"
+          #locationForm="ngForm">
+
+          <ng-container *ngIf="this.model.coordinates">
+
+            <div-field>
+              <mat-form-field>
+                <input
+                  required
+                  placeholder="{{'name' | translate}}"
+                  matInput
+                  id="name"
+                  autofocus
+                  name="name"
+                  maxlength="40"
+                  [(ngModel)]="model.name">
+              </mat-form-field>
+            </div-field>
+
+            <div-field>
+              <mat-form-field>
+                <input
+                  required
+                  placeholder="{{'label' | translate}}"
+                  matInput
+                  id="label"
+                  name="label"
+                  maxlength="40"
+                  [(ngModel)]="model.label">
+              </mat-form-field>
+            </div-field>
+
+            <div-field *ngIf="drawType === 'polygon' || drawType === 'circle'">
+              <ng-select
+                [items]="(modulesList$ | async)"
+                [multiple]="true"
+                [closeOnSelect]="false"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="{{'module' | translate}}"
+                [(ngModel)]="model.modules"
+                name="module">
+              </ng-select>
+            </div-field>
+
+            <div-field *ngIf="drawType === 'marker'">
+              <ng-select
+                bindLabel="name"
+                bindValue="name"
+                placeholder="{{'icon' | translate}}"
+                [(ngModel)]="model.icon"
+                name="icon">
+                <ng-option
+                  *ngFor="let icon of iconList$"
+                  value="{{icon.name}}">
+                  <mat-icon>{{icon.name}}</mat-icon>
+                </ng-option>
+              </ng-select>
+            </div-field>
+
+            <div-field class="mb-3">
+              <mat-label style="color:#666666">{{'color' | translate}}</mat-label>
+              <input
+                name="color"
+                [(colorPicker)]="model.color"
+                [cpPosition]="'bottom'"
+                maxlength="10"
+                [style.background]="model.color">
+            </div-field>
+
+            <div
+              class="item row p-3"
+              *ngIf="drawType === 'polygon' || drawType === 'circle'">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-8 col-xl-6">
+                <mat-form-field
+                  appearance="standard"
+                  style="width:100%">
+                  <mat-label>Date from</mat-label>
+                  <input
+                    [(ngModel)]="model.date_from"
+                    matInput
+                    name="date_from"
+                    [matDatepicker]="pickerFrom">
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerFrom">
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #pickerFrom></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-sm-12 col-md-6 col-lg-8 col-xl-6">
+                <mat-form-field
+                  appearance="standard"
+                  style="width:100%">
+                  <mat-label>Date to</mat-label>
+                  <input
+                    matInput
+                    [(ngModel)]="model.date_to"
+                    [matDatepicker]="pickerTo"
+                    name="date_to">
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="pickerTo">
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #pickerTo></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div-field>
+              <mat-checkbox
+                matInput
+                [(ngModel)]="model.show_on_map"
+                name="show_on_map">
+                {{'show-on-map' | translate}}
+              </mat-checkbox>
+            </div-field>
+
+            <div-field>
+              <mat-checkbox
+                matInput
+                [(ngModel)]="model.active"
+                name="active">
+                {{'active' | translate}}
+              </mat-checkbox>
+            </div-field>
+
+            <div-field>
+              <mat-checkbox
+                matInput
+                [(ngModel)]="model.end_zone"
+                name="end_zone">
+                {{'End zone' | translate}}
+              </mat-checkbox>
+            </div-field>
+
+            <div-field *ngIf="drawType === 'polygon' || drawType === 'circle'">
+              <ng-select
+                bindLabel="name"
+                placeholder="{{'action' | translate}}"
+                [items]="(actionsList$ | async)"
+                [multiple]="true"
+                [closeOnSelect]="false"
+                [(ngModel)]="model.action"
+                (add)="openActionSliderDialog($event)"
+                name="action">
+              </ng-select>
+            </div-field>
+
+            <mat-card *ngIf="this.model.action && this.model.action.length > 0">
+              <mat-list role="list">
+                <mat-list-item
+                  role="listitem"
+                  *ngFor="let item of model.action">
+                  {{item.name}} : {{item.value}}
+                </mat-list-item>
+              </mat-list>
+            </mat-card>
+            <br>
+
+          </ng-container>
+
+          <!-- BUTTONS -->
+          <div class="row mt-2 ml-3">
+
+            <button
+              class="ml-4 mr-2 clear-button"
+              mat-stroked-button
+              (click)="cancel()">
+              <i class="fas fa-times"></i>
+              {{'cancel' | translate}}
+            </button>
+
+            <button
+              [disabled]="! this.model.coordinates || !locationForm.form.valid || saveExecuted"
+              mat-flat-button
+              class="save-button"
+              (click)="save()"
+              color="accent">
+              <i class="fas fa-save"></i>
+              {{'save' | translate}}
+            </button>
+          </div>
+        </form>
+
+      </div>
+
+      <!-- <br>
+      <pre>{{model | json}}</pre> -->
+    </div>
+
+  </div>
+</mat-card>

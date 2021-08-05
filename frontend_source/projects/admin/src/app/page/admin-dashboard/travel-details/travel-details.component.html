@@ -1,0 +1,221 @@
+
+<div class="container-fluid">
+    <div class="form-row">
+        <!-- USER -->
+        <div
+            class="form-group col-xl-2 col-md-4 ml-3"
+            *ngIf="authenticationService.checkPermission('report', 'filter_user')"
+        >
+          <ng-select
+            [items]="(users$ | async)?.data"
+            bindLabel="fullname"
+            bindValue="id"
+            placeholder="{{'user' | translate}}"
+            name="user_id"
+            (ngModelChange)="onUserSelectChange($event)"
+            [(ngModel)]="filter.userId"
+          >
+          </ng-select>
+        </div>   
+        <!-- VEHICLES -->
+        <div class="form-group col-xl-2 col-md-4 ml-3">
+          <ng-select
+            [items]="(objects$ | async)"
+            bindLabel="name"
+            bindValue="id"
+            [disabled]="authenticationService.checkPermission('report', 'filter_user') && !filter.userId"
+            [multiple]="false"
+            [closeOnSelect]="false"
+            [hideSelected]="true"
+            placeholder="{{'traceable-object-id' | translate}}"
+            name="traceable_object_id"
+            [(ngModel)]="filter.traceableObjectId"
+            (ngModelChange)="onTraceableObjectSelectChange($event)"
+          >
+          </ng-select>
+        </div>
+    
+        <!-- DATE FROM -->
+        <div class="form-group col-xl-2 col-md-4 ml-3" style="margin-top: 2px;">
+            <mat-form-field class="mt-1">
+            <input
+                matInput
+                placeholder="{{'date-from' | translate}}"
+                [owlDateTimeTrigger]="dt"
+                [owlDateTime]="dt"
+                [disabled]="!filter.traceableObjectId"
+                (ngModelChange)="onDateFromChange($event)"
+                [(ngModel)]="filter.dateFrom"
+            />
+            <button
+                mat-button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                [owlDateTimeTrigger]="dt"
+            >
+                <mat-icon class="date-time">date_range</mat-icon>
+            </button>
+            <owl-date-time
+                #dt
+                [disabled]="!filter.traceableObjectId"
+            ></owl-date-time>
+            </mat-form-field>
+        </div>
+    
+        <!-- DATE TO -->
+        <div class="form-group col-xl-2 col-md-4 ml-3" style="margin-top: 2px;">
+            <mat-form-field class="mt-1">
+            <input
+                matInput
+                placeholder="{{'date-to' | translate}}"
+                [owlDateTimeTrigger]="dtTo"
+                [owlDateTime]="dtTo"
+                [disabled]="!filter.dateFrom"
+                (ngModelChange)="onDateToChange($event)"
+                [(ngModel)]="filter.dateTo"
+            />
+            <button
+                mat-button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                [owlDateTimeTrigger]="dtTo"
+            >
+                <mat-icon class="date-time">date_range</mat-icon>
+            </button>
+            <owl-date-time #dtTo [disabled]="!filter.dateFrom"></owl-date-time>
+            </mat-form-field>
+        </div>
+    
+        <!-- CANCEL -->
+        <div class="form-group col-xl-2 col-md-2 mt-3 ml-2">
+            <button
+            mat-stroked-button
+            class="clear-button"
+            (click)="resetFilters()"
+            title="clear-filter"
+            >
+            <i class="fas fa-eraser"></i>
+            {{'clear-filter' | translate}}
+            </button>
+        </div>
+    
+        <!-- <div class="form-group col-xl-2 col-md-2 mt-3 ml-2 text-rigth">
+            <a mat-stroked-button class="clear-button" routerLink="/report-details" title="Report Details">
+            <i class="fas fa-eraser"></i>
+            Report Details
+            </a>
+        </div> -->
+    </div>
+
+    <mat-card class="m-0 mt-3">
+        <h2 *ngIf="!report">
+          <small class="text-muted">{{'trip-info' | translate}}</small>
+        </h2>
+        <ng-container *ngIf="report">
+          <br />
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="row p-3">
+                <div class="col-6 mb-3">
+                  <mat-form-field>
+                    <input
+                      disabled
+                      placeholder="{{'consumption' | translate}}"
+                      matInput
+                      id="consumption"
+                      name="consumption"
+                      [(ngModel)]="report.consumption"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-6 mb-3">
+                  <mat-form-field>
+                    <input
+                      disabled
+                      placeholder="{{'consumption_per_trip' | translate}}"
+                      matInput
+                      id="consumption_per_trip"
+                      name="consumption_per_trip"
+                      [(ngModel)]="report.consumption_per_trip"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div-field>
+                <mat-form-field>
+                  <input
+                    disabled
+                    placeholder="{{'distance' | translate}}"
+                    matInput
+                    id="distance"
+                    name="distance"
+                    [(ngModel)]="report.distance"
+                  />
+                </mat-form-field>
+              </div-field>
+            </div>
+          </div>
+        </ng-container>
+    </mat-card>
+    <mat-card *ngIf="loader">
+      <div class="col-md-12 text-center">
+        <div class="spinner-border" role="status">
+        </div>
+      </div>
+
+    </mat-card>
+    <div class="row" *ngIf="graphStatus">
+        <div class="col-md-6 mt-4">
+          <mat-card>
+            <canvas 
+              baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+            </canvas>
+          </mat-card>
+        </div>
+    
+        <div class="col-md-6 mt-4">
+          <mat-card>
+            <canvas 
+              baseChart
+              [datasets]="speedBarChartData"
+              [labels]="speedBarChartLabels"
+              [options]="speedBarChartOptions"
+              [legend]="speedBarChartLegend"
+              [chartType]="speedBarChartType">
+            </canvas>
+          </mat-card>
+        </div>
+    
+        <div class="col-md-6 mt-4">
+          <mat-card>
+            <canvas 
+              baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"
+            >
+            </canvas>
+          </mat-card>
+        </div>
+
+        <div class="col-xl-6">
+          <canvas
+            baseChart
+            [datasets]="newBarChartData"
+            [labels]="newBarChartLabels"
+            [options]="newBarChartOptions"
+            [legend]="newBarChartLegend"
+            [chartType]="newBarChartType"
+          ></canvas>
+         </div>
+     </div>   
+  </div>

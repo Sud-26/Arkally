@@ -1,0 +1,83 @@
+<form
+  name="newForm"
+  #newForm="ngForm"
+  >
+
+  <div class="container">
+
+    <header title="add-new-rebate"></header>
+    
+    <mat-card>
+
+      <div-field>
+        <mat-form-field>
+          <input
+            required
+            placeholder="{{'value' | translate}}"
+            matInput
+            autofocus
+            id="value"
+            name="value"
+            type="number"
+            [(ngModel)]="model.value">
+        </mat-form-field>
+      </div-field>
+
+      <div-field>
+        <mat-form-field>
+          <input
+            required
+            placeholder="{{'description' | translate}}"
+            matInput            
+            id="description"
+            name="description"
+            [(ngModel)]="model.description">
+        </mat-form-field>
+      </div-field>
+
+      <div-field>
+        <mat-checkbox
+          matInput
+          [(ngModel)]="model.rebate_is_fixed"
+          name="rebate_is_fixed">
+          {{'rebate_is_fixed' | translate}}
+        </mat-checkbox>
+      </div-field>
+
+      <div-field>
+        <mat-checkbox
+          matInput
+          [(ngModel)]="model.active"
+          name="active">
+          {{'active' | translate}}
+        </mat-checkbox>
+      </div-field>
+
+      <div-field>
+        <mat-checkbox
+          matInput
+          [(ngModel)]="model.deleted"
+          name="deleted">
+          {{'deleted' | translate}}
+        </mat-checkbox>
+      </div-field>
+
+      <nvl-cancel-save
+        (save)="save()"
+        (cancel)="cancel()"></nvl-cancel-save>
+
+    </mat-card>
+  </div>
+
+</form>
+
+<!-- TODO EXTRACT TO COMPONENT -->
+<ng-template #loadingTemplate *ngIf="!model">
+  <div class="d-flex justify-content-center m-5">
+    <div
+      class="spinner-border"
+      role="status">
+      <span class="sr-only">{{'loading' | translate}}</span>
+    </div>
+  </div>
+</ng-template>

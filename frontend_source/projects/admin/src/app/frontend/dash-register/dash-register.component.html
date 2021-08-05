@@ -1,0 +1,263 @@
+<form
+    #registerForm="ngForm"
+    class="d-flex justify-content-center flex-column align-items-center"
+>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First Name *"
+                    required="required"
+                    name="firstName"
+                    value="{{firstName}}"
+                    [(ngModel)]="registerForm.firstName"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last Name *"
+                    name="lastName"
+                    value="{{lastName}}"
+                    [(ngModel)]="registerForm.lastName"
+                    required="required"
+                />
+            </div>
+        </div>
+        <div class="form-group col-lg-12 pl-3">
+            <input
+                class="styled-radio"
+                id="male"
+                value="male"
+                type="radio"
+                name="gendar"
+                required="required"
+                [(ngModel)]="registerForm.gendar"
+            />
+            <label class="form-check-label" for="male">Male </label>
+            <input
+                class="styled-radio"
+                id="female"
+                type="radio"
+                name="gendar"
+                value="female"
+                required="required"
+                [(ngModel)]="registerForm.gendar"
+            />
+            <label class="form-check-label ml-3" for="female">Female </label>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Company Name"
+                    name="companyName"
+                    value="{{companyName}}"
+                    [(ngModel)]="registerForm.companyName"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Vat/ID number"
+                    name="vatId"
+                    value="{{vatId}}"
+                    [(ngModel)]="registerForm.vatId"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Address * "
+                    required="required"
+                    name="address"
+                    value="{{address}}"
+                    [(ngModel)]="registerForm.address"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="City *"
+                    required="required"
+                    name="city"
+                    value="{{city}}"
+                    [(ngModel)]="registerForm.city"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Postal Code * "
+                    required="required"
+                    name="postalCode"
+                    value="{{postalCode}}"
+                    [(ngModel)]="registerForm.postalCode"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Country *"
+                    required="required"
+                    name="country"
+                    value="{{country}}"
+                    [(ngModel)]="registerForm.country"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Mobile Number *"
+                    required="required"
+                    name="mobileNumber"
+                    value="{{mobileNumber}}"
+                    [(ngModel)]="registerForm.mobileNumber"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email Address *"
+                    required="required"
+                    name="email"
+                    value="{{email}}"
+                    [(ngModel)]="registerForm.email"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password *"
+                    required="required"
+                    name="password"
+                    value="{{password}}"
+                    [(ngModel)]="registerForm.password"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="form-group">
+                <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Confirm Password *"
+                    required="required"
+                    name="confirmPassword"
+                    value="{{confirmPassword}}"
+                    [(ngModel)]="registerForm.confirmPassword"
+                />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Web page"
+                    name="webPage"
+                    value="{{webPage}}"
+                    [(ngModel)]="registerForm.webPage"
+                />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-start w-100">
+        <div class="form-group">
+            <input
+                class="styled-checkbox"
+                id="updateEmails1"
+                type="checkbox"
+                required="required"
+                name="terms"
+                [(ngModel)]="registerForm.terms"
+            />
+            <label class="form-check-label" for="updateEmails1"
+                >You agree to our
+                <span class="simple-blue-text">Terms of Services</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <input
+                class="styled-checkbox"
+                id="updateEmails"
+                type="checkbox"
+                name="updateByMails"
+                [(ngModel)]="registerForm.updateByMails"
+            />
+            <label class="form-check-label" for="updateEmails"
+                >Get updates via emails.</label
+            >
+        </div>
+    </div>
+    <div class="form-group mt-2">
+        <button
+            type="submit"
+            class="btn btn-block success success2 log-in btn-xl"
+            (click)="onRegister(registerForm.form.value, $event);"
+        >
+            Sign up
+        </button>
+    </div>
+    <div class="form-group socal-icons">
+        <a
+            class="mr-15"
+            href="https://www.facebook.com/ArkallyGPS/"
+            target="_blank"
+        >
+            <img width="35" src="./../../../assets/img/dashboard/f.png" />
+        </a>
+        <a
+            class="mr-15"
+            href="https://www.instagram.com/arkallygps/"
+            target="_blank"
+        >
+            <img
+                src="./../../../assets/img/dashboard/instagram.svg"
+                width="30"
+                height="30"
+            />
+        </a>
+        <a
+            class="mr-15"
+            href="https://www.youtube.com/channel/UCpWvwQNzHYmOt89PzBnMQuQ"
+            target="_blank"
+        >
+            <img
+                src="./../../../assets/img/dashboard/youtube.svg"
+                width="40"
+                height="40"
+            />
+        </a>
+    </div>
+</form>

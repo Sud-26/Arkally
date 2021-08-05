@@ -1,0 +1,77 @@
+.header {
+    font-style: bold;   
+    font-size: smaller;
+}
+
+.value {
+    font-size: large;
+}
+
+.btn-circle{
+    > button{
+        height: 30px;
+        line-height: 25px;
+        border: 2px solid #269fc4 !important;
+        border-radius: 20px !important;
+        margin: 0 2px !important;
+        padding: 0 2px;
+        font-size: 13px;
+        font-weight: 500;
+        &.active{
+          background-color: #269fc4 !important;
+          color: #fff !important;
+        }
+        &:hover{
+          background-color: #269fc4;
+          color: #fff;
+        }
+        &:nth-of-type(1){
+          margin-left: 0 !important;
+        }
+        &:nth-last-of-type(1){
+          margin-right: 0 !important;
+        }
+       
+    }
+  }
+  button{
+    &.mat-mini-fab{
+          &.active{
+            opacity: 0.5;
+          }
+          opacity: 1;
+    }
+  
+    &.btn-small{
+      height: 30px;
+      width: 30px;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &.disabled{
+      color:  rgba(0, 0, 0, 0.26) !important;
+      opacity: 0.5;
+      .mat-icon{
+        color: rgba(0, 0, 0, 0.26) !important;
+      }
+    }
+  }
+
+  .alarm-list-btns {
+    &.btn-circle{
+      > button{
+        margin-bottom: 5px !important; 
+      }
+    }
+  }
+
+
+@media only screen and (max-width: 768px){
+    .cdk-overlay-pane {
+      max-width: 300px !important;
+      width: 300px !important;
+      min-width: 300px !important;
+  }
+}

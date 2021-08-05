@@ -1,0 +1,94 @@
+<form
+  name="newForm"
+  #newForm="ngForm"
+  >
+
+  <div class="container">
+
+    <header title="add-new-module"></header>
+    
+    <mat-card>
+
+      <div-field>
+        <mat-form-field>
+          <input
+            required
+            placeholder="{{'name' | translate}}"
+            matInput
+            autofocus
+            id="name"
+            name="name"
+            [(ngModel)]="model.name">
+        </mat-form-field>
+      </div-field>
+
+      <div-field>
+        <ng-select
+          [items]="(users$ | async)?.data"
+          bindLabel="fullname"
+          bindValue="id"
+          placeholder="{{'user' | translate}}"
+          name="user_id"
+          [(ngModel)]="model.user_id">
+        </ng-select>
+      </div-field>
+
+      <div-field>
+        <ng-select
+          [items]="(objects$ | async)?.data"
+          bindLabel="name"
+          bindValue="id"
+          placeholder="{{'traceable-object-id' | translate}}"
+          name="traceable_object_id"
+          [(ngModel)]="model.traceable_object_id">
+        </ng-select>
+      </div-field>
+
+      <div-field>
+        <mat-checkbox
+          matInput
+          [(ngModel)]="model.show_on_map"
+          name="show_on_map">
+          {{'show-on-map' | translate}}
+        </mat-checkbox>
+      </div-field>
+
+      <div-field>
+        <mat-checkbox
+          matInput
+          [(ngModel)]="model.active"
+          name="active">
+          {{'active' | translate}}
+        </mat-checkbox>
+      </div-field>
+
+      <div-field *ngIf="permissionUpdateAdmin">
+        <ng-select
+          [items]="(unassignedModules | async)?.data"
+          bindLabel="module_id"
+          bindValue="module_id"
+          placeholder="{{'module-id' | translate}}"
+          name="module_id"
+          [(ngModel)]="model.module_id">
+        </ng-select>
+      </div-field>
+
+      <nvl-cancel-save
+        (save)="save()"
+        (cancel)="cancel()"></nvl-cancel-save>
+
+    </mat-card>
+  </div>
+
+</form>
+
+<!-- TODO EXTRACT TO COMPONENT -->
+<ng-template #loadingTemplate *ngIf="!model">
+  <div class="d-flex justify-content-center m-5">
+    <div
+      class="spinner-border"
+      role="status">
+      <span class="sr-only">{{'loading' | translate}}</span>
+    </div>
+  </div>
+</ng-template>

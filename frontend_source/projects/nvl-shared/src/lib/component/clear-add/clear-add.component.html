@@ -1,0 +1,33 @@
+<!-- <div class="container"> -->
+  <div class="col-12 mb-3 ml-1">
+   
+    <button
+      mat-stroked-button
+      class="clear-button"
+      (click)="doResetFilter()"
+      title="clear-filter">
+      <i class="fas fa-eraser"></i>
+      {{'clear-filter' | translate}}
+    </button>
+
+    <button
+      *ngIf="addEnabled"
+      mat-flat-button
+      class="ml-2 float-right"
+      color="accent"
+      (click)="doAddNew()">
+      <i class="fas fa-plus"></i>
+      {{'add' | translate}}
+    </button>
+
+    <button
+      *ngIf="defaultViewEnabled"
+      mat-flat-button
+      class="ml-4"
+      color="accent"
+      (click)="doDefaultViewAction()">
+      <i class="fas fa-sync"></i>
+      {{'default-view' | translate}}
+    </button>
+  </div>
+<!-- </div> -->

@@ -1,0 +1,324 @@
+[
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+                [
+                    [
+                        44.118125,
+                        15.700241
+                    ],
+                    [
+                        44.007651,
+                        15.573874
+                    ],
+                    [
+                        44.09447,
+                        15.540909
+                    ],
+                    [
+                        44.181161,
+                        15.546403
+                    ],
+                    [
+                        44.118125,
+                        15.700241
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "label": "Tester1",
+            "color": "#860606",
+            "id": 158,
+            "name": "Tester1"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+                [
+                    [
+                        44.764944,
+                        15.887046
+                    ],
+                    [
+                        44.772741,
+                        16.112309
+                    ],
+                    [
+                        44.78833,
+                        16.354056
+                    ],
+                    [
+                        44.624431,
+                        16.315596
+                    ],
+                    [
+                        44.710341,
+                        16.090332
+                    ]
+                    [
+                        44.764944,
+                        15.887046
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "label": "Tester2",
+            "color": "#a50909",
+            "id": 157,
+            "name": "Tester2"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        42.644524,
+                        18.166367
+                    ],
+                    [
+                        42.644484,
+                        18.168385
+                    ],
+                    [
+                        42.643325,
+                        18.168492
+                    ],
+                    [
+                        42.643305,
+                        18.16626
+                    ],
+                    [
+                        42.644524,
+                        18.166367
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "label": "sound alarm off",
+            "color": "#84ea53",
+            "id": 150,
+            "name": "off"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        42.648279,
+                        18.163319
+                    ],
+                    [
+                        42.64355,
+                        18.167009
+                    ],
+                    [
+                        42.646671,
+                        18.171
+                    ],
+                    [
+                        42.648279,
+                        18.163319
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "label": "end location",
+            "color": "#ef0303",
+            "id": 149,
+            "name": "test3"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        42.676495,
+                        18.111058
+                    ],
+                    [
+                        42.67547,
+                        18.110592
+                    ],
+                    [
+                        42.67534,
+                        18.111407
+                    ],
+                    [
+                        42.676361,
+                        18.112405
+                    ],
+                    [
+                        42.676495,
+                        18.111058
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "label": "End zone",
+            "color": "#02daf9",
+            "id": 151,
+            "name": "test4"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        42.659971,
+                        18.073159
+                    ],
+                    [
+                        42.658844,
+                        18.073288
+                    ],
+                    [
+                        42.658674,
+                        18.075809
+                    ],
+                    [
+                        42.659766,
+                        18.075702
+                    ],
+                    [
+                        42.659995,
+                        18.073164
+                    ],
+                    [
+                        42.659971,
+                        18.073159
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "label": "test5",
+            "color": "#f70303",
+            "id": 152,
+            "name": "test5"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44.310958,
+                15.832103
+            ]
+        },
+        "properties": {
+            "label": "test6 ",
+            "color": "#9d0808",
+            "icon": "location_on",
+            "id": 162,
+            "name": "test6"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44.114183,
+                15.211254
+            ]
+        },
+        "properties": {
+            "label": "test7",
+            "color": "#c60a0a",
+            "icon": "home",
+            "id": 161,
+            "name": "test7"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44.727576,
+                16.236528
+            ]
+        },
+        "properties": {
+            "label": "test8",
+            "color": "#a50909",
+            "icon": "location_on",
+            "id": 157,
+            "name": "test8"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44.636153,
+                16.656239
+            ]
+        },
+        "properties": {
+            "label": "test9",
+            "color": "#880303",
+            "icon": "directions_boat",
+            "id": 154,
+            "name": "test9"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44.153591,
+                15.310151
+            ]
+        },
+        "properties": {
+            "label": "test10 ",
+            "color": "#33f70f",
+            "radius": 2235.0626322718,
+            "id": 160,
+            "name": "test10"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44.369863,
+                15.343116
+            ]
+        },
+        "properties": {
+            "label": "test11 ",
+            "color": "#af0808",
+            "radius": 4142.3935308488,
+            "id": 159,
+            "name": "test11"
+        }
+    }
+]

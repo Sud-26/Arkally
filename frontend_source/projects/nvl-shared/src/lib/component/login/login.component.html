@@ -1,0 +1,96 @@
+<td-layout>
+  <td-layout-nav navigationRoute="/">
+
+    <mat-card class="mat-card-login p-5">
+
+      <!-- AVATAR -->
+      <div
+        [ngClass]="getClass('avatar')"
+        *ngIf="config.avatar"
+        [style.background-color]="getStyle('avatar:background-color')">
+        <mat-icon
+          class="push"
+          class="avatar-icon"
+          [svgIcon]="config.avatar.icon">
+        </mat-icon>
+      </div>
+
+      <h1
+        *ngIf="!config.avatar"
+        class="pb-3">{{getTitle()}}
+      </h1>
+
+      <!-- LOGIN MESSAGE -->
+      <td-message
+        label="{{'login.invalid-login' | translate}}"
+        sublabel
+        color="warn"
+        icon="warning"
+        [opened]="state.loginAttemptFailed"
+        class="error-message">
+
+        <button
+          td-message-actions
+          mat-icon-button
+          (click)="closeErrorMessage()">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </td-message>
+
+      <!-- LOGIN FORM, USERNAME, PASSWORD -->
+      <td-dynamic-forms
+        [elements]="formElements"
+        #loginForm>
+
+        <ng-template
+          class="login-container"
+          let-element
+          ngFor
+          [ngForOf]="formElements">
+          <ng-template
+            let-control="control"
+            [tdDynamicFormsError]="element.name">
+            <span *ngIf="control.touched || !control.pristine">             
+              
+              <!-- <span *ngIf="control.hasError('minlength')">{{'app.min-length' | translate}}
+                : {{ element.minLength }}</span>              
+              <span *ngIf="control.hasError('maxlength')">{{'app.max-length' | translate}}
+                : {{ element.minLength }}</span> -->                  
+              
+              <span *ngIf="control.hasError('required')">{{'app.required' | translate}}</span>
+              </span>
+          </ng-template>
+        </ng-template>
+
+        <mat-form-field class="pl-1 pr-1 mt-1">
+          <mat-label>{{'app.language' | translate}}</mat-label>
+          <mat-select [(value)]="selectedLocale" required (selectionChange)="languageChange($event)">
+            <mat-option *ngFor="let locale of env.locales" [value]="locale.locale"> {{locale.label | translate}}</mat-option> 
+          </mat-select>
+        </mat-form-field>
+      
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            (click)="doLogin()"
+            color="primary"
+            class="login-button">
+            {{'app.login' | translate}}
+          </button>
+        </mat-card-actions>
+      </td-dynamic-forms>
+
+      <div class="mt-4">
+        <a
+          href="*"
+          style="font-size: 14px; color:#d4d4d4">
+          {{'app.forgot-password' | translate}}
+        </a>
+      </div>
+
+     
+
+    </mat-card>
+
+  </td-layout-nav>
+</td-layout>

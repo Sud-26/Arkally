@@ -1,0 +1,936 @@
+<!-- <header> -->
+<!-- <app-header (scrollView)="onScrollView($event)"></app-header> -->
+
+<app-dash-header (scrollView)="onHeaderScrollView($event)"></app-dash-header>
+<!-- </header> -->
+<main class="fixed-header">
+    <section class="top-banner" id="none">
+        <img
+            class="img-fluid img-left"
+            src="./../../../assets/img/dashboard/top-banner/bluemapcircle-01.png"
+        />
+        <div class="container">
+            <div class="row">
+                <div
+                    class="col-sm-12 col-md-6 col-lg-6 animate__animated"
+                    id="step1"
+                    #step1
+                >
+                    <h3 class="text-teal about-box">
+                        About Watercrafts GPS and Remote System
+                    </h3>
+                    <div class="sub-text text-white font-weight-normal">
+                        ArkGPS device advanced real-time location tracking and
+                        remotely control your watercraft.
+                    </div>
+                    <a
+                        class="btn success"
+                        (click)="onHeaderScrollView({id: 'feature'})"
+                        pageScroll
+                        >Features</a
+                    >
+                </div>
+                <div
+                    class="col-sm-12 col-md-6 col-lg-6 m-center animate__animated"
+                    id="step2"
+                    #step2
+                >
+                    <img
+                        class="img-fluid transform-dash-img"
+                        src="./../../../assets/img/dashboard/top-banner/bannerimage.png"
+                    /><img
+                        class="img-fluid img-right"
+                        src="./../../../assets/img/dashboard/top-banner/yellowmapcircle-01.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <section class="choose-wrp animate__animated" id="choose" #choose>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 text-center">
+                    <h3>Why Choose Us ?</h3>
+                    <p class="sub-text font-weight-bold">
+                        Outstanding Performance and Team Selection
+                    </p>
+                    <div class="text-blue mb-4 col-xl-8 ml-auto mr-auto">
+                        We selected expert team members around the world, who
+                        shared their knowledge and expertise to modernize device
+                        following features.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6 mb-3">
+                    <div class="choose-box">
+                        <div class="row">
+                            <img
+                                class="img-fluid choose-icons"
+                                src="./../../../assets/img/dashboard/choose/security.png"
+                            />
+                            <div class="col">
+                                <h5 class="text-blue">Security and Safety</h5>
+                                <p>
+                                    We built the device to meet the challenges
+                                    of safety and security. ArkallyGPS Green
+                                    Zone provides a useful feature for a safe
+                                    and secure ride of watercraft. Moreover,
+                                    Intelligent Distance Control (IDC) system
+                                    reduces the risk of accidents and
+                                    collisions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 mb-3">
+                    <div class="choose-box">
+                        <div class="row">
+                            <img
+                                class="img-fluid choose-icons"
+                                src="./../../../assets/img/dashboard/choose/intelligent.png"
+                            />
+                            <div class="col">
+                                <h5 class="text-blue">
+                                    Total control over your jet ski: Sea Doo and
+                                    Yamaha
+                                </h5>
+                                <p>
+                                    ArkallyGPS system manages complete throttle
+                                    without any interference on the jet ski.
+                                    With our device, we solved the problem of
+                                    starting a jet ski after prolonged non-use
+                                    of the system. ArkallyGPS has the option to
+                                    turn off the engine so your customer can't
+                                    turn it on until you approve the same.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 mb-3">
+                    <div class="choose-box">
+                        <div class="row">
+                            <img
+                                class="img-fluid choose-icons"
+                                src="./../../../assets/img/dashboard/choose/remotely.png"
+                            />
+                            <div class="col">
+                                <h5 class="text-blue">
+                                    Remotely Controllable Watercraft
+                                </h5>
+                                <p>
+                                    After installing this device, you can
+                                    control remotely watercraft speed limit,
+                                    engine control, GPS location, and much more.
+                                    The watercraft data will be available at
+                                    your ﬁngertips. You can extract data
+                                    according to your need anytime, anywhere.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 mb-3">
+                    <div class="choose-box">
+                        <div class="row">
+                            <img
+                                class="img-fluid choose-icons"
+                                src="./../../../assets/img/dashboard/choose/cloud.png"
+                            />
+                            <div class="col">
+                                <h5 class="text-blue">Cloud Data Storage</h5>
+                                <p>
+                                    We are introducing real-time interaction
+                                    with the cloud-based database to access
+                                    intelligently organized data. It provides
+                                    complete information you need to run your
+                                    watercraft business professionally.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img
+            class="img-fluid img-right"
+            src="./../../../assets/img/dashboard/choose/bluemap-01.png"
+        />
+    </section> -->
+    <section class="gps-works-wrp animate__animated" id="process" #process>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 m-center">
+                    <img
+                        class="img-fluid gps-work"
+                        src="./../../../assets/img/dashboard/gps-work/gps-work.png"
+                    />
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h3 class="text-teal">How ArkallyGPS Works</h3>
+                    <div class="sub-text text-white">
+                        Smart Devices and Controls
+                    </div>
+                    <div class="text-white">
+                        Watercraft with installed ArkallyGPS device directly
+                        connects with satellite. This process saves the
+                        real-time location and analytics to the server. The user
+                        can access that data anytime, anywhere. This real-time
+                        process also allows users to control speed, engine and
+                        rent duration completely and remotely of any watercraft.
+                    </div>
+                    <a class="btn success mt-20">Button</a>
+                </div>
+            </div>
+        </div>
+        <img
+            class="img-fluid img-right"
+            src="./../../../assets/img/dashboard/gps-work/yellowmapcircle.png"
+        />
+    </section>
+    <section class="green-zones-wrp animate__animated" id="safty" #safty>
+        <img
+            class="img-fluid img-left"
+            src="./../../../assets/img/dashboard/safety/bluemapcircle-01.png"
+        />
+        <div class="container">
+            <div class="row">
+                <div
+                    class="col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center flex-column"
+                >
+                    <h3 class="text-blue">Green Zones & Accident Safety</h3>
+                    <div class="sub-text">ArkallyGPS Security</div>
+                    <div class="text-blue">
+                        Arkally Green Zones provide useful features for a safe
+                        and secure ride to business and personal watercraft
+                        owners as well. Safe zones can be created to enjoy
+                        Riding freely without any speed limit. If you cross the
+                        green zone the warning Beeps will be used to indicate
+                        that you out of the green zone.
+                    </div>
+                    <div class="text-blue mt-4">
+                        Moreover, to be out of the green zone Arkally GPS will
+                        automatically reduce speed to the minimum you allow. In
+                        any kind of critical situation, Arkally GPS allows
+                        control of watercraft engines simultaneously to the
+                        owner if needed.
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 m-center">
+                    <img
+                        class="img-fluid m-max-50"
+                        src="./../../../assets/img/dashboard/safety/securityandsafetyimage-01.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section
+        class="device-features-wrp animate__animated"
+        id="feature"
+        #feature
+    >
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 text-center">
+                    <h3 class="text-teal">ArkGPS Device Features</h3>
+                    <div class="sub-text text-white">
+                        Remotely Controllable With Professional UI
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="features-box">
+                        <img
+                            class="img-fluid smart-icon"
+                            src="./../../../assets/img/dashboard/features/Untitled-6_timedurationmanagement.png"
+                        />
+                        <h5 class="text-teal">Time Duration Management</h5>
+                        <p>
+                            You can track the duration of ride rent time. You
+                            can take action accordingly.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="features-box">
+                        <img
+                            class="img-fluid smart-icon"
+                            src="./../../../assets/img/dashboard/features/Untitled-6_saftyandsecuritymanagement.png"
+                        />
+                        <h5 class="text-teal">
+                            Safety and Security Management
+                        </h5>
+                        <p>
+                            You can define safe for security and safety
+                            purposes.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="features-box">
+                        <img
+                            class="img-fluid smart-icon"
+                            src="./../../../assets/img/dashboard/features/Untitled-6_userdataanalyticsandmanagement.png"
+                        />
+                        <h5 class="text-teal">
+                            User Data Analytics Management
+                        </h5>
+                        <!-- <h5 class="text-teal">Data Optimization & Statistics</h5> -->
+                        <p>
+                            Has a Cloud-based and professional database to
+                            manage business reports.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="features-box">
+                        <img
+                            class="img-fluid smart-icon"
+                            src="./../../../assets/img/dashboard/features/Untitled-6_speedcontrolmanagement.png"
+                        />
+                        <h5 class="text-teal">
+                            Intelligent Distance Control (IDC)
+                        </h5>
+                        <p>
+                            Intelligent Distance Control (IDC) is designed to
+                            avoid accidents and collisions.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="features-box">
+                        <img
+                            class="img-fluid smart-icon"
+                            src="./../../../assets/img/dashboard/features/Untitled-6-05.png"
+                        />
+
+                        <h5 class="text-teal">Speed Control</h5>
+                        <p>
+                            You can control the speed. Like within the
+                            green-zone, full speed otherwise minimum allowed
+                            speed.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                    <div class="features-box">
+                        <img
+                            class="img-fluid smart-icon"
+                            src="./../../../assets/img/dashboard/features/Untitled-6_controlremotelywatercrafts.png"
+                        />
+                        <h5 class="text-teal">Control Remotely Watercrafts</h5>
+                        <p>
+                            You can turn on and off the watercraft in case of
+                            emergency for recovery etc.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img
+            class="img-fluid img-right"
+            src="./../../../assets/img/dashboard/features/bluemapcircle.png"
+        />
+    </section>
+    <section class="intelligent-distance-wrp animate__animated" id="idc" #idc>
+        <img
+            class="img-left"
+            src="./../../../assets/img/dashboard/intelligent/bluemapcircle-01.png"
+        />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-7 col-lg-7">
+                    <h3 class="text-blue">
+                        Intelligent Distance Control (IDC) System
+                    </h3>
+                    <div class="sub-text text-teal">ArkallyGPS Security</div>
+                    <div class="text-blue">
+                        You can achieve more trust and sales by your customers
+                        by introducing Intelligent Distance Control (IDC). You
+                        can save time, money, and nerves. Intelligent Distance
+                        Control (IDC) system reduces the risk of accidents and
+                        collisions. Now rent more jet skis without stress for
+                        crashes.
+                    </div>
+                    <div class="mt-4 text-blue">
+                        It works in a brilliant way. When the system detects at
+                        a distance of approximately 60 meters to another
+                        watercraft, IDC lose the throttle and no speed in that
+                        range. So you can enjoy riding the way you should.
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-5 col-lg-5">
+                    <img
+                        class="img-fluid"
+                        src="./../../../assets/img/dashboard/intelligent/intelligentdistancecontrolimage-01.png"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cloud-based-wrp animate__animated" id="database" #database>
+        <div class="container">
+            <div class="row">
+                <div
+                    class="col-sm-12 col-md-5 col-lg-5 m-center d-flex align-items-center"
+                >
+                    <img
+                        class="img-fluid"
+                        src="./../../../assets/img/dashboard/cloud/cloudbaseddatabasandanalytics-01.png"
+                    />
+                </div>
+
+                <div class="col-sm-12 col-md-7 col-lg-7">
+                    <h3 class="text-teal">
+                        Cloud Based Database and Analytics
+                    </h3>
+                    <div class="sub-text text-white">
+                        ArkallyGPS Data Management
+                    </div>
+                    <div class="text-white">
+                        It's easy to interact to store and intelligently
+                        organized cloud-based database. That provides you the
+                        full information you need to run your watercraft
+                        business professionally. Your data will be available at
+                        your fingertips. You can extract data according to your
+                        need anytime, anywhere. You will really enjoy using this
+                        application.
+                    </div>
+                    <div class="cloud-desktop">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-2 cloud-out">
+                                <div class="cloud-based-box text-center">
+                                    <img
+                                        class="img-fluid cloud-icon33"
+                                        src="./../../../assets/img/dashboard/cloud/travelreport-01.svg"
+                                    />
+                                    <div class="d-flex flex-column">
+                                        <h5>Travel Report</h5>
+                                        <div class="cloud-text">
+                                            Report History
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-2 cloud-out">
+                                <div class="cloud-based-box text-center">
+                                    <img
+                                        class="img-fluid cloud-icon33"
+                                        src="./../../../assets/img/dashboard/cloud/speedpie-01.svg"
+                                    />
+                                    <div class="d-flex flex-column">
+                                        <h5>Speed Pie</h5>
+                                        <div class="cloud-text">
+                                            Speed pie chart
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-2 cloud-out">
+                                <div class="cloud-based-box text-center">
+                                    <img
+                                        class="img-fluid cloud-icon32"
+                                        src="./../../../assets/img/dashboard/cloud/mileage-01.svg"
+                                    />
+                                    <div class="d-flex flex-column">
+                                        <h5 class="mt-8">Mileage Statistics</h5>
+                                        <div class="cloud-text">
+                                            Check you mileage
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-2 cloud-out">
+                                <div class="cloud-based-box text-center">
+                                    <img
+                                        class="img-fluid cloud-icon33"
+                                        src="./../../../assets/img/dashboard/cloud/speedcurves-01.svg"
+                                    />
+                                    <div class="d-flex flex-column">
+                                        <h5>Speed Curves</h5>
+                                        <div class="cloud-text">
+                                            Speed insights
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-2 cloud-out">
+                                <div class="cloud-based-box text-center">
+                                    <img
+                                        class="img-fluid cloud-icon33"
+                                        src="./../../../assets/img/dashboard/cloud/map-01.svg"
+                                    />
+                                    <div class="d-flex flex-column">
+                                        <h5>Map</h5>
+                                        <div class="cloud-text">
+                                            Map History
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="cloud-mobile">
+                <div class="row">
+                    <div class="col-sm-3 col-md-4 col-lg-2 cloud-out">
+                        <div class="cloud-based-box text-center"><img class="img-fluid cloud-icon33"
+                                src="./../../../assets/img/dashboard/cloud-1.png">
+                            <h5>Travel Report</h5>
+                            <div class="cloud-text">Report History </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-4 col-lg-2 cloud-out">
+                        <div class="cloud-based-box text-center"><img class="img-fluid cloud-icon33"
+                                src="./../../../assets/img/dashboard/cloud-2.png">
+                            <h5>Speed Pie</h5>
+                            <div class="cloud-text">Speed pie chart </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-4 col-lg-2 cloud-out">
+                        <div class="cloud-based-box text-center"><img class="img-fluid cloud-icon32"
+                                src="./../../../assets/img/dashboard/cloud-3.png">
+                            <h5>Mileage Statistics</h5>
+                            <div class="cloud-text">Check you meleage </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-4 col-lg-2 cloud-out">
+                        <div class="cloud-based-box text-center"><img class="img-fluid cloud-icon33"
+                                src="./../../../assets/img/dashboard/cloud-4.png">
+                            <h5>Speed Curves</h5>
+                            <div class="cloud-text">speed insights </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-4 col-lg-2 cloud-out">
+                        <div class="cloud-based-box text-center"><img class="img-fluid cloud-icon33"
+                                src="./../../../assets/img/dashboard/cloud-5.png">
+                            <h5>Map</h5>
+                            <div class="cloud-text">Map History </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <section
+        class="command-list-wrp animate__animated text-blue"
+        id="command"
+        #command
+    >
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-xl-12">
+                    <h3 class="width100 text-blue">Command List Options</h3>
+                    <div class="text-center text-blue">
+                        To successfully protect and run your watercraft
+                        business, you need to have full control of your
+                        watercraft. The following features are developed and
+                        tailored by professionals around the world. ArkGPS
+                        provide you precise and professional control for buyers.
+                    </div>
+                </div>
+            </div>
+            <div class="command-row mt-4">
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/travelreport-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Travel Report
+                    </h6>
+                    <small class="text-blue">
+                        Check And Analyze
+                    </small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/gpsactive-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">GPS Active</h6>
+                    <small class="text-blue"> Check it's status</small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/enableengine-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Driving History
+                    </h6>
+                    <small class="text-blue">
+                        Arrange and update
+                    </small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/rentstatices-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Rent Statistics
+                    </h6>
+                    <small class="text-blue">
+                        Check Your Mileage
+                    </small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/renttimer-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">Rent Timer</h6>
+                    <small class="text-blue">
+                        Check &amp; Set Duration
+                    </small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/mapactivities-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Map Activities
+                    </h6>
+                    <small class="text-blue">
+                        Map History
+                    </small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/speedpie-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">Speed Pie</h6>
+                    <small class="text-blue">
+                        Speed pie chart
+                    </small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/enableengine-02.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">Stop Engine</h6>
+                    <small class="text-blue">
+                        Arrange and update
+                    </small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/intellignetdistacecontrol-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3 text-nowrap">
+                        Inteligent Distance control
+                    </h6>
+                    <small class="text-blue">Arrange and update</small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/voltagelevel-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Voltage Level
+                    </h6>
+                    <small class="text-blue">Monitor power level</small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/sleepmode-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">Sleep Mode</h6>
+                    <small class="text-blue">Manage Power Modes</small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/disableengine-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Disable Engine
+                    </h6>
+                    <small class="text-blue">Arrange and update</small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/speedcurves-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Speed Curves
+                    </h6>
+                    <small class="text-blue">Speed insights</small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/alarmlist-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">Alarm List</h6>
+                    <small class="text-blue">Arrange and update</small>
+                </div>
+
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/fuel-level-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">Fuel Level</h6>
+                    <small class="text-blue">Fuel status</small>
+                </div>
+
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/throttel-control-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3">
+                        Throttle Control
+                    </h6>
+                    <small class="text-blue">Throttle control</small>
+                </div>
+                <div class="command-items">
+                    <img
+                        src="./../../../assets/img/dashboard/command/data-optamization-01.svg"
+                        width="80"
+                    />
+                    <h6 class="text-blue font-weight-bold mt-3 text-nowrap">
+                        Data Optimization & Stats
+                    </h6>
+                    <small class="text-blue">Optimization routes </small>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="devices-controls-wrp animate__animated" id="app" #app>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-5 m-center mb-5 col-lg-5">
+                    <img
+                        class="img-fluid"
+                        src="./../../../assets/img/dashboard/smart/laptopandmobile-01.svg"
+                    />
+                    <div
+                        class="row mt-2 justify-content-center"
+                        id="download"
+                        #download
+                    >
+                        <div class="col google-play-box text-right">
+                            <img
+                                class="img-fluid"
+                                src="./../../../assets/img/dashboard/smart/googleplay-01.png"
+                            />
+                        </div>
+
+                        <div class="col google-play-box">
+                            <img
+                                class="img-fluid"
+                                src="./../../../assets/img/dashboard/smart/appstore-01.png"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-7 col-lg-7">
+                    <h3 class="text-teal">Smart Devices and Controls</h3>
+                    <div class="sub-text text-white">How Arkally Controls</div>
+                    <div class="text-white">
+                        Simple and user friendly interface to control your
+                        watercraft like a pro. Just install our application on
+                        smart devices and you will have full control over the
+                        watercraft speed limit, engine control, and GPS
+                        positions. The ArkallyGPS application is available on
+                        both
+                        <a class="text-teal curor-pointer font-weight-bold"
+                            >iOS</a
+                        >
+                        and
+                        <a class="text-teal curor-pointer font-weight-bold"
+                            >Android</a
+                        >.
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="devices-controls-box text-center">
+                                <img
+                                    class="img-fluid smart-icon"
+                                    src="./../../../assets/img/dashboard/smart/insructionalmanual-01.svg"
+                                    width="110"
+                                    height="110"
+                                />
+                                <h5 class="mt-3">Instructional Manual</h5>
+                                <a class="btn success">Download</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="devices-controls-box text-center">
+                                <img
+                                    class="img-fluid smart-icon"
+                                    src="./../../../assets/img/dashboard/smart/installationmanual-01.svg"
+                                    width="110"
+                                    height="110"
+                                />
+                                <h5 class="mt-3">Installation Manual</h5>
+                                <a class="btn success">Download</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="devices-controls-box text-center">
+                                <img
+                                    class="img-fluid smart-icon"
+                                    src="./../../../assets/img/dashboard/smart/downloadbrochure-01.svg"
+                                    width="110"
+                                    height="110"
+                                />
+                                <h5 class="mt-3">Download Brochure</h5>
+                                <a
+                                    class="btn success"
+                                    href="../../../assets/img/dashboard/Arkally-GPS-Systems-Brochure-2021.pdf"
+                                    target="_blank"
+                                    >Download</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="our-pricing-wrp animate__animated" id="price" #price>
+        <div class="container">
+            <div class="row mb-50">
+                <div class="col-sm-12 col-md-3 col-lg-2 offset-lg-1">
+                    <div class="day-money-logo">
+                        <img
+                            class="img-fluid logo-footer-img"
+                            src="./../../../assets/img/dashboard/price/award-01.png"
+                        />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-9 col-lg-8">
+                    <h3>Our Pricing Plans</h3>
+                    <div class="sub-text">15 Days Money-Back Guarantee</div>
+                    <div class="text-blue">
+                        Reducing the hassle of buying a product. We are
+                        introducing a money-back guarantee, because we know the
+                        quality of product. We hired many engineers and
+                        developers around the world to achieve the product goals
+                        for our valuable clients.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="pieces-box text-center font-weight-bold">
+                        <div class="pieces-box-header">1 Piece</div>
+                        <div>€ 1000</div>
+                        <div>+</div>
+                        <div>vat</div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="pieces-box text-center font-weight-bold">
+                        <div class="pieces-box-header">2-5 Pieces</div>
+                        <div>€ 800</div>
+                        <div>+</div>
+                        <div>vat</div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="pieces-box text-center font-weight-bold">
+                        <div class="pieces-box-header">5-10 Pieces</div>
+                        <div>€ 600</div>
+                        <div>+</div>
+                        <div>vat</div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="pieces-box text-center font-weight-bold">
+                        <div class="pieces-box-header">10+ Pieces</div>
+                        <div>€ 500</div>
+                        <div>+</div>
+                        <div>vat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="subscription-wrp position-relative animate__animated"
+        id="subscription"
+        #subscription
+    >
+        <div class="container">
+            <div class="location-img">
+                <img
+                    src="./../../../assets/img/dashboard/subscriptions/yellowmap-01.png"
+                />
+            </div>
+            <div class="row mb-50">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h3 class="text-center text-teal">Subscription Package</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="subscription-box text-center">
+                        <div class="subscription-header">1 month</div>
+                        <div class="package-prizes">60 €</div>
+                        <div class="subscription-text">
+                            Buy features Monthly updates Yearly Packages
+                        </div>
+                        <a class="btn select-btn">Select</a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="subscription-box2 text-center">
+                        <div class="best-seller">Best Seller</div>
+                        <div class="subscription-header2">3 months</div>
+                        <div class="package-prizes2">150 <span>€</span></div>
+                        <div class="subscription-text2">
+                            Buy features Monthly updates Yearly Packages
+                        </div>
+                        <a class="btn select-btn">Select</a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="subscription-box text-center">
+                        <div class="subscription-header">6 months</div>
+                        <div class="package-prizes">250 €</div>
+                        <div class="subscription-text">
+                            Buy features Monthly updates Yearly Packages
+                        </div>
+                        <a class="btn select-btn">Select</a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="subscription-box text-center">
+                        <div class="subscription-header">1 year</div>
+                        <div class="package-prizes">400 €</div>
+                        <div class="subscription-text">
+                            Buy features Monthly updates Yearly Packages
+                        </div>
+                        <a class="btn select-btn">Select</a>
+                    </div>
+                </div>
+            </div>
+            <div class="location-img-right">
+                <img
+                    src="./../../../assets/img/dashboard/subscriptions/bluemap-01.png"
+                />
+            </div>
+        </div>
+    </section>
+</main>
+
+<app-footer></app-footer>

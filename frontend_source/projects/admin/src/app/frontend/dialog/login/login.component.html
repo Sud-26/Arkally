@@ -1,0 +1,17 @@
+<h4 class="title-4 mb-4 mat-dialog-title d-flex
+ justify-content-between" mat-dialog-title>Login
+    <a mat-dialog-close class="text-muted h6"> <span class="material-icons ">close</span></a>
+</h4>
+<mat-dialog-content>
+    <div class="action-form  w-100 mt-1">
+        <app-dash-login
+            (forgetPass)="openForgotPass($event);"
+        >
+        </app-dash-login>
+    </div>
+
+</mat-dialog-content>
+
+<!-- <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions> -->

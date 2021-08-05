@@ -1,0 +1,211 @@
+<h5>{{name}}</h5>
+
+<mat-divider></mat-divider>
+
+<mat-tab-group>
+  <mat-tab label="{{'data' | translate}}">
+    <div class="container p-4">
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'date' | translate}}</h6>
+          <p class="value"> {{data.date | date: 'dd.MM.yyyy.'}} </p>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'time' | translate}}</h6>
+          <p class="value"> {{data.time | date: 'HH:mm:ss'}} </p>
+        </div>
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'voltage_level' | translate}}</h6>
+          <p class="value"> {{data.voltage_level| number:'.2-2':'en' }} </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'speed' | translate}}</h6>
+          <p class="value"> {{data.speed }} </p>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'fuel_level' | translate}}</h6>
+          <p class="value"> {{data.fuel_level }} </p>
+        </div>
+
+        
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'gps_active' | translate}}</h6>
+          <div
+            class="dot-green"
+            *ngIf="data.gps_active === true"></div>
+          <span class="conditional-green"></span>
+          <div
+            class="dot-red"
+            *ngIf="data.gps_active === false"></div>
+          <span class="conditional-red"></span>
+        </div>
+      <!--
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'track_angle' | translate}}</h6>
+          <p class="value"> {{data.track_angle }} </p>
+        </div>
+      
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'magnetic_var' | translate}}</h6>
+          <p class="value"> {{data.magnetic_var }} </p>
+        </div>
+        -->
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_running' | translate}}</h6>
+
+          <div
+            class="dot-green"
+            *ngIf="data.vehicle_running === true"></div>
+          <span class="conditional-green"></span>
+          <div
+            class="dot-red"
+            *ngIf="data.vehicle_running === false"></div>
+          <span class="conditional-red"></span>
+        </div>
+      </div>
+      
+    </div>
+
+  </mat-tab>
+  
+  <mat-tab label="{{'actions' | translate}}">
+    
+    <div class="container p-0 p-lg-2">
+      <mat-list
+      role="list"
+      *ngFor="let action of actions; let i= index">
+      <mat-list-item role="listitem">
+        <mat-slide-toggle
+        *ngIf="action.type === 'toggle'"
+            [checked]="disableEngine"
+            (change)="slide($event, action)"
+            >
+            {{action.name}}
+          </mat-slide-toggle>
+          <button
+            style="min-width: 100%;"
+            mat-stroked-button
+            color="primary"
+            (click)="click($event, action)"
+            [ngClass]="buzzerOn && i === 0 ? 'disabled' :  stopEngine && i === 1 ? 'disabled' : ''"
+            *ngIf="action.type === 'button'">
+            <mat-icon>{{action.icon}}</mat-icon>
+            {{action.name}}
+          </button>
+          <!-- <button
+          style="min-width: 100%;"
+          mat-stroked-button
+          color="primary"
+          (click)="click($event, action)"
+          [disabled]="action.disabled"
+          *ngIf="action.type === 'button'">
+          <mat-icon>{{action.icon}}</mat-icon>
+          {{action.name}}
+        </button> -->
+        </mat-list-item>
+        
+      </mat-list>
+      
+      <div class="d-flex justify-content-lg-end col">
+        <button mat-mini-fab title="Pause" [disabled]="!alarmState" class="btn-small" color="warn" *ngIf="pausePlayStatus" (click)="playPause(true)"  aria-label="Clear">
+          <i class="fa fa-pause"></i>
+        </button>
+        <button mat-mini-fab title="Play" [disabled]="!alarmState"   class="btn-small" color="accent" *ngIf="!pausePlayStatus" (click)="playPause(false)" aria-label="Clear">
+          <i class="fa fa-play"></i>
+        </button>
+
+        <button mat-mini-fab title="Reset" [disabled]="!alarmState"  class="btn-small ml-1" color="warn" (click)="clearTimer(false)"  aria-label="Clear">
+            <i class="fa fa-trash"></i>
+          </button>
+        <button mat-mini-fab title="Complete" [disabled]="!alarmState"   class="btn-small ml-1" color="accent" (click)="completeTimer()" aria-label="Clear">
+          <i class="fa fa-clipboard-check fa-lg"></i>
+        </button>
+
+
+        <!-- <button mat-mini-fab title="Complete" [disabled]="pausePlayStatus ? disabled : ''"   class="btn-small ml-1" color="accent" (click)="completeTimer()" aria-label="Clear">
+          <i class="fa fa-clipboard-check fa-lg"></i>
+        </button> -->
+     
+      </div>
+      <div class="d-flex flex-wrap mt-2 mb-2 justify-content-between col">
+        <div>
+          <strong>Rent Time: </strong> 
+          {{alarm_on_tme}}
+        </div>
+        <div>
+          <strong>Spent Time: </strong>
+          {{timer}} 
+        </div>
+      </div>
+      
+      <div class="d-flex flex-wrap mt-2 alarm-list-btns btn-circle justify-content-lg-between mb-2 col" >
+        <button *ngFor="let time of timeSlots | keyvalue: unsorted"  [ngClass]="timerData  == time.value ? 'active' : ''" (click)="activeAlarm(time.value, true)" mat-stroked-button color="accent">{{time.value}} min</button>
+      </div>
+      
+    </div>
+    <!-- <pre>{{actions | json}}</pre> -->
+  </mat-tab>
+  
+  <mat-tab label="{{'vehicle_data' | translate}}">
+    <div class="container p-4">
+  
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'registration_number' | translate}}</h6>
+          <p class="value"> {{vehicleData.registration_number}} </p>
+        </div>
+        <div class="col-12 col-md-6">
+          <h6 class="header">{{'vin_number' | translate}}</h6>
+          <p class="value"> {{vehicleData.vin_number}} </p>
+        </div>
+        
+      </div>
+  
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'consumption' | translate}}</h6>
+          <p class="value"> {{vehicleData.consumption}} </p>
+        </div>
+  
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_default_throttle' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_default_throttle}} </p>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_brand' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_brand}} </p>
+        </div>
+  
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_model' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_model}} </p>
+        </div>
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_year' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_year}} </p>
+        </div>
+        
+      </div>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>
+<mat-divider></mat-divider>
+<button
+mat-button
+mat-dialog-close
+class="mt-2">
+{{'close' | translate }}
+</button>

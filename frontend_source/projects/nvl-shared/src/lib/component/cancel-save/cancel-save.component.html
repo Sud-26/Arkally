@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row mb-3">
+    <button
+      class="ml-3 mr-2 clear-button"
+      mat-stroked-button
+      (click)="doCancel($event)"
+      color="warn">
+      <i class="fas fa-times"></i>
+      {{'cancel' | translate}}
+    </button>
+
+    <button
+      class="save-button"
+      mat-flat-button
+      (click)="doSave()"
+      color="accent">
+      <i class="fas fa-save"></i>
+      {{'save' | translate}}
+    </button>
+
+  </div>
+</div>

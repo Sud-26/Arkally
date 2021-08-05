@@ -1,0 +1,18 @@
+<h5>Rent Statics </h5>
+<mat-divider></mat-divider>
+<div class="custom_table">
+  <mat-card>
+  <nvl-overview-table
+    [columns]="columns" 
+    [rows]="rows"
+    [page]="page" 
+    [loader]="loader"
+    [rentTime]="getRentTime"
+    [spentTime]="getSpentTime" 
+    [pageRequest]="pageRequest" 
+    (changePage)="setPage($event)"
+    (changePageSize)="changePageSize($event)"
+    >
+  </nvl-overview-table>
+</mat-card>
+</div>

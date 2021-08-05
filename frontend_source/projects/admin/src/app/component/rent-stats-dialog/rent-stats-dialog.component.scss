@@ -1,0 +1,43 @@
+// @media screen and(max-width: 900px){
+    .custom_table{
+        max-height: calc(100vh - 300px); 
+        overflow-y: auto;
+     
+    }
+// }
+
+
+// @media only screen and (max-width: 900){
+// @media only screen and (max-width: 900px) {
+//     mat-dialog-container{
+//         ngx-datatable{
+//             datatable-header{
+//                 datatable-header-cell{
+//                     display: none !important;
+//                     &:nth-of-type(1),  &:nth-of-type(2),  &:nth-of-type(3){
+//                         display: block;
+//                     }
+//                 }
+
+//             }
+//             datatable-body{
+//                 datatable-body-cell{
+//                     display: none !important;
+//                     &:nth-of-type(1),  &:nth-of-type(2),  &:nth-of-type(3){
+//                         display: block;
+//                     }
+//                 }
+
+//             }
+    
+    
+//         }
+
+//     }
+// }
+
+
+button.focused-btn:focus{
+    outline: 0px !important;
+    background: transparent;
+}

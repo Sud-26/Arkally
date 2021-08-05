@@ -1,0 +1,77 @@
+<h4
+  class="title-4 mb-4 mat-dialog-title d-flex justify-content-between"
+  mat-dialog-title
+>
+  Forget Password
+  <a mat-dialog-close class="text-muted h6">
+    <span class="material-icons">close</span></a
+  >
+</h4>
+<mat-dialog-content>
+  <div class="action-form w-100 mt-1">
+    <div class="form-group" *ngIf="!otpFields && !isPassword">
+      <input
+        type="email"
+        class="form-control"
+        (change)="email = $event.target.value"
+        name="email"
+        placeholder="Email Address *"
+        required="required"
+      />
+    </div>
+
+    <div class="form-group" *ngIf="otpFields">
+      <input
+        type="number"
+        class="form-control"
+        (change)="onOtpUpdate($event.target.value)"
+        placeholder="Enter one time password"
+        required="required"
+      />
+    </div>
+
+    <div class="form-group" *ngIf="isPassword">
+      <input
+        type="password"
+        class="form-control"
+        (change)="onPasswordChange($event.target.value)"
+        placeholder="Enter password"
+        required="required"
+      />
+    </div>
+
+    <div class="form-group" *ngIf="isConfirmPassword">
+      <input
+        type="password"
+        class="form-control"
+        (change)="onConfirmPasswordChange($event.target.value)"
+        placeholder="Confirm Password"
+        required="required"
+      />
+    </div>
+
+    <div class="form-group mt-4">
+      <button
+        (click)="onNext()"
+        *ngIf="nextFirst"
+        class="btn success success2 log-in btn-xl"
+      >
+        Next
+      </button>
+      <button
+        (click)="onNextStep()"
+        *ngIf="nextSecond"
+        class="btn success success2 log-in btn-xl"
+      >
+        Next
+      </button>
+      <button
+        (click)="onSubmit()"
+        *ngIf="isPassword"
+        class="btn success success2 log-in btn-xl"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</mat-dialog-content>

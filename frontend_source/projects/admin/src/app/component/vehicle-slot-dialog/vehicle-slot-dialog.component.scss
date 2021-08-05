@@ -1,0 +1,11 @@
+.max-height{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.footer{
+    background-color: white;
+    z-index: 99999;
+    position: relative;
+}

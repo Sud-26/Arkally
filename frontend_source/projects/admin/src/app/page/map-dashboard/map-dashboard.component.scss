@@ -1,0 +1,30 @@
+.map-container {
+    height: 80vh;
+    padding: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .map-container {
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 1920px) {
+    .map-container {
+        height: 76vh;
+    }
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+    margin-bottom: -31px;
+    margin-top: 3px;
+}
+
+.buttons-container {
+    margin-top: 15px;
+}
+

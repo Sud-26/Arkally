@@ -1,0 +1,137 @@
+<p>Modules info</p>
+
+<mat-divider></mat-divider>
+<mat-card *ngIf="isDataNull">
+  No record found !
+</mat-card>
+
+<mat-tab-group *ngIf="!isDataNull">
+  <mat-tab label="{{'data' | translate}}">
+    <div class="container p-4">
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'date' | translate}}</h6>
+          <p class="value"> {{data.date | date: 'dd.MM.yyyy.'}} </p>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'time' | translate}}</h6>
+          <p class="value"> {{data.time | date: 'HH:mm:ss'}} </p>
+        </div>
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'voltage_level' | translate}}</h6>
+          <p class="value"> {{data.voltage_level| number:'.2-2':'en' }} </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'speed' | translate}}</h6>
+          <p class="value"> {{data.speed }} </p>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'fuel_level' | translate}}</h6>
+          <p class="value"> {{data.fuel_level }} </p>
+        </div>
+
+        
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'gps_active' | translate}}</h6>
+          <div
+            class="dot-green"
+            *ngIf="data.gps_active === true"></div>
+          <span class="conditional-green"></span>
+          <div
+            class="dot-red"
+            *ngIf="data.gps_active === false"></div>
+          <span class="conditional-red"></span>
+        </div>
+      <!--
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'track_angle' | translate}}</h6>
+          <p class="value"> {{data.track_angle }} </p>
+        </div>
+      
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'magnetic_var' | translate}}</h6>
+          <p class="value"> {{data.magnetic_var }} </p>
+        </div>
+        -->
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_running' | translate}}</h6>
+
+          <div
+            class="dot-green"
+            *ngIf="data.vehicle_running === true"></div>
+          <span class="conditional-green"></span>
+          <div
+            class="dot-red"
+            *ngIf="data.vehicle_running === false"></div>
+          <span class="conditional-red"></span>
+        </div>
+      </div>
+      
+    </div>
+
+  </mat-tab>
+  
+  <mat-tab label="{{'vehicle_data' | translate}}">
+    <div class="container p-4">
+  
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'registration_number' | translate}}</h6>
+          <p class="value"> {{vehicleData.registration_number}} </p>
+        </div>
+        <div class="col-12 col-md-6">
+          <h6 class="header">{{'vin_number' | translate}}</h6>
+          <p class="value"> {{vehicleData.vin_number}} </p>
+        </div>
+        
+      </div>
+  
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'consumption' | translate}}</h6>
+          <p class="value"> {{vehicleData.consumption}} </p>
+        </div>
+  
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_default_throttle' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_default_throttle}} </p>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_brand' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_brand}} </p>
+        </div>
+  
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_model' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_model}} </p>
+        </div>
+        <div class="col-12 col-md-4">
+          <h6 class="header">{{'vehicle_year' | translate}}</h6>
+          <p class="value"> {{vehicleData.vehicle_year}} </p>
+        </div>
+        
+      </div>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>
+<mat-divider></mat-divider>
+<button
+  mat-button
+  mat-dialog-close
+  class="mt-2">
+  {{'close' | translate }}
+</button>
+

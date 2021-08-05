@@ -1,0 +1,41 @@
+<!-- <mat-dialog-content class="mat-typography"> -->
+<h5>Update Time Slot</h5>
+
+<mat-divider></mat-divider>
+<div class="container pt-4 pb-3 pl-0 pr-0 max-height">
+    <div class="row mb-4 mb-lg-0" *ngFor="let list of dialogData; let i= index">
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Timer Slot Duration (min)</mat-label>
+                <input matInput type="number" (change)="onChange($event)" (keydown)="onKeyDown($event)" min="0" [(ngModel)]="list.value">
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Alarm Before (min) </mat-label>
+                <input matInput type="number" (change)="onChange($event)" (keydown)="onKeyDown($event)" min="0" [(ngModel)]="list.key">
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Alarm Duration (min)</mat-label>
+                <input matInput type="number" (change)="onChange($event)" (keydown)="onKeyDown($event)" min="0" [(ngModel)]="list.duration">
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-3 p-lg-0 d-flex no-wrap align-items-center">
+            <button color="accent" mat-raised-button class="btn btn-sm" (click)="addSlotField()">
+                <i class="fa fa-plus"></i>
+            </button>
+            <button color="warn" mat-raised-button *ngIf="i != 0" class="btn btn-sm ml-1" (click)="removeAddress(i)">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="footer">
+    <button mat-raised-button color="warn" (click)="onNoClick()">Close</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="dialogData" cdkFocusInitial>Update</button>
+</div>
+
+<!-- </mat-dialog-content> -->

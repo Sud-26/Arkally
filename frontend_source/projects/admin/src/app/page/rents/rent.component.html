@@ -1,0 +1,107 @@
+<!-- <mat-card> -->
+<!--- <form
+    id="filterForm"
+    name="filterForm"
+    #filterForm="ngForm">
+
+ <nvl-clear-add
+    (addNew)="add()"
+    (resetFilters)="resetFilters()">
+  </nvl-clear-add>
+    <mat-divider></mat-divider> -->
+
+<!-- <div class="form-row">
+      <div class="form-group col-xl-3 col-md-3 ml-3">
+        <mat-form-field>
+          <input
+            placeholder="{{'name' | translate}}"
+            matInput
+            id="name"
+            name="name"
+            [(ngModel)]="serviceFilter.name">
+        </mat-form-field>
+      </div>
+    </div>
+  </form> -->
+
+<!-- <nvl-clear-add
+    (addNew)="add()"
+    (resetFilters)="resetFilters()">
+  </nvl-clear-add>
+</mat-card> -->
+
+
+
+<!-- FILTER -->
+<div class="form-row m-0">
+  <!-- USER -->
+  <div class="form-group col-xl-2 col-md-4 ml-3" *ngIf="authenticationService.checkPermission('report', 'filter_user')">
+    <ng-select [items]="(users$ | async)?.data" bindLabel="fullname" bindValue="id" placeholder="{{'user' | translate}}"
+      name="user_id" (ngModelChange)="onUserSelectChange($event)" [(ngModel)]="serviceFilter.userId">
+    </ng-select>
+  </div>
+
+  <!-- VEHICLES -->
+  <div class="form-group col-xl-2 col-md-4 ml-3">
+    <ng-select [items]="(objects$ | async)" bindLabel="name" bindValue="id" [multiple]="false" [closeOnSelect]="false"
+      [hideSelected]="true" placeholder="{{'traceable-object-id' | translate}}" name="traceable_object_id"
+      [(ngModel)]="serviceFilter.traceableObjectId" (ngModelChange)="onTraceableObjectSelectChange($event)">
+    </ng-select>
+  </div>
+
+  <!-- TIMESLOT -->
+  <div class="form-group col-xl-2 col-md-4 ml-3">
+    <ng-select [items]="(slot$ | async)" bindLabel="name" bindValue="slot" [multiple]="false" [closeOnSelect]="false"
+      [hideSelected]="true" placeholder="{{'Time Slot' | translate}}" name="slot"
+      (ngModelChange)="onSlotChange($event)"
+      [(ngModel)]="serviceFilter.slot">
+    </ng-select>
+  </div>
+
+  <!-- DATE FROM -->
+  <div class="form-group col-xl-2 col-md-4 ml-3" style="margin-top: 2px">
+
+    <mat-form-field class="mt-1">
+      <input matInput placeholder="{{'date-from' | translate}}" [owlDateTimeTrigger]="dt" [owlDateTime]="dt"
+        (ngModelChange)="onDateFromChange($event)" [(ngModel)]="serviceFilter.dateFrom">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" [owlDateTimeTrigger]="dt">
+        <mat-icon class="date-time">date_range</mat-icon>
+      </button>
+      <owl-date-time #dt></owl-date-time>
+    </mat-form-field>
+  </div>
+
+  <!-- DATE TO -->
+  <div class="form-group col-xl-2 col-md-4 ml-3" style="margin-top: 2px">
+
+    <mat-form-field class="mt-1">
+      <input matInput placeholder="{{'date-to' | translate}}" [owlDateTimeTrigger]="dtTo" [owlDateTime]="dtTo"
+        (ngModelChange)="onDateToChange($event)" [(ngModel)]="serviceFilter.dateTo">
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" [owlDateTimeTrigger]="dtTo">
+        <mat-icon class="date-time">date_range</mat-icon>
+      </button>
+      <owl-date-time #dtTo></owl-date-time>
+    </mat-form-field>
+  </div>
+
+  <!-- CANCEL -->
+  <div class="form-group col-xl-2 col-md-2 mt-3 ml-2">
+    <button mat-stroked-button class="clear-button" (click)="resetFilters()" title="clear-filter">
+      <i class="fas fa-eraser"></i>
+      {{'clear-filter' | translate}}
+    </button>
+  </div>
+</div>
+<mat-card>
+  <nvl-overview-table
+    [columns]="columns" 
+    [rows]="rows"
+    [page]="page"
+    [loader]="loader" 
+    [pageRequest]="pageRequest"
+    [rentTime]="getRentTime"
+    [spentTime]="getSpentTime"
+    (changePage)="setPage($event)"
+    (changePageSize)="changePageSize($event)">
+  </nvl-overview-table>
+  <!-- </mat-card> -->

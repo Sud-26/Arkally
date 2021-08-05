@@ -1,0 +1,78 @@
+<mat-card>
+  <form
+    id="filterForm"
+    name="filterForm"
+    #filterForm="ngForm">
+
+    <div class="form-row">
+      <div class="form-group col-xl-3 col-md-3 ml-3">
+        <mat-form-field>
+          <input
+            placeholder="{{'message' | translate}}"
+            matInput
+            id="message"
+            name="message"
+            [(ngModel)]="serviceFilter.message">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group col-xl-3 col-md-3 ml-3">
+        <mat-form-field>
+          <input
+            placeholder="{{'date-from' | translate}}"
+            matInput
+            id="dateFrom"
+            name="dateFrom"
+            [matDatepicker]="pickerFrom"
+            [(ngModel)]="serviceFilter.dateFrom">
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerFrom">
+          </mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-group col-xl-3 col-md-3 ml-3">
+        <mat-form-field>
+          <input
+            placeholder="{{'date-to' | translate}}"
+            matInput
+            id="dateTo"
+            name="dateTo"
+            [matDatepicker]="pickerTo"
+            [(ngModel)]="serviceFilter.dateTo">
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerTo">
+          </mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <nvl-clear-add
+    [addEnabled] = "createPermission"
+    (addNew)="add()"
+    (resetFilters)="resetFilters()">
+  </nvl-clear-add>
+  
+</mat-card>
+
+<mat-card>
+  <nvl-overview-table
+    [deleteEnabled]="deletePermission"
+    [editEnabled]="editPermission"
+    [columns]="columns"
+    [rows]="rows"
+    [page]="page"
+    [loader]="loader"
+    [pageRequest]="pageRequest"
+    (changePage)="setPage($event)"
+    (changePageSize)="changePageSize($event)"
+    (navigateToEdit)="edit($event)"
+    (deleteEntity)="delete($event)">
+  </nvl-overview-table>
+</mat-card>
