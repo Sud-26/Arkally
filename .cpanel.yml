@@ -1,5 +1,5 @@
 
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/devs/public_html/
+    - export DEPLOYPATH=/home/devs/repositories/Arkally
     - /bin/cp  * $DEPLOYPATH
